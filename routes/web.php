@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\PostController;
 use App\Http\Controllers\Auth\BannerController;
+use App\Http\Controllers\Auth\DashboardController;
 use App\Http\Controllers\Auth\PostAboutController;
 use App\Http\Controllers\Auth\ServiceController;
 use App\Http\Controllers\Auth\SubAboutController;
@@ -39,9 +40,7 @@ Route::get('/post', function () {
 });
 
 
-Route::get('/dashboard', function () {
-    return view('auth.main');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
 

@@ -55,7 +55,7 @@
                   @foreach($banner as $rowban)
                   <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td><img src="{{ asset('/images/banners/' . $rowban->image) }}" class="w-75" /></td>
+                    <td><img src="{{ asset('/images/banners/' . $rowban->image) }}" class="w-75 h-25" /></td>
                     <td> 
                       @if(!$rowban->name == '')
                          <a href="{{ $rowban->name }}" class="btn btn-outline-info btn-sm"> <i class="mdi mdi-link-variant"></i> link</a>

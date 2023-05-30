@@ -19,22 +19,23 @@ body {
   color: #6F8BA4;
   font-weight: 400;
   overflow-x: hidden;
+ 
 }
 .bg-head{
-  background: url("../images/web/bg-head.png");
+    background: url("../images/web/headweb.jpg");
  
     background-size: cover;
     position: relative;
-    background-position: right center;
-    background-size: contain;
+    background-position:top;
     background-repeat: no-repeat;
-  /* background-origin: border-box;
-  background-repeat: no-repeat;
-  background-position: left center; */
+    
 }
 .bg-contant{
-  background-image: url("../images/web/bg-content3.png");
-  background-size: contain;
+  background-image: url("../images/web/bodyweb.jpg");
+  background-size: cover;
+  position: relative;
+  background-position: top;
+  
   background-repeat: no-repeat;
 
 }
@@ -82,6 +83,25 @@ p {
 }
 .navbar-toggle .icon-bar {
   background: #223a66;
+}
+
+.bg-navmenu{
+ /*add style*/
+ background: #ff4805 !important;
+ padding: 10px !important;
+}
+.container-fluid{
+ padding-left: 0px !important;
+ padding-right: 0px !important;
+}
+.bg-fff{
+  background-color: #fff;
+}
+.bg-box{
+  background-color:#fe8007;
+}
+.bg-boxhr{
+  background-color:#ff6804;
 }
 
 input[type=email], input[type=password], input[type=text], input[type=tel] {
@@ -306,7 +326,7 @@ a {
 }
 
 a:focus, a:hover {
-  color: #e12454;
+  color: #222;
   text-decoration: none;
 }
 
@@ -381,7 +401,7 @@ a:focus {
 #navbarmain .nav-link {
   font-weight: 600;
   padding: 5px 15px;
-  color: #00288d;
+  color: #fff;
   font-family: "Exo", sans-serif;
   text-transform: capitalize;
   font-size: 16px;
@@ -389,7 +409,7 @@ a:focus {
 }
 #navbarmain .nav-link:hover,
 #navbarmain .active .nav-link {
-  color: #29a7ff;
+  color: #fb0;
 }
 
 .dropdown-toggle::after {
@@ -401,9 +421,9 @@ a:focus {
 }
 
 .header-top-bar {
-  background: #223a66;
+  /*background: #223a66;*/
   font-size: 14px;
-  padding: 5px 0px;
+  padding: 0px 0px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   color: #fff;
 }
@@ -432,7 +452,7 @@ a:focus {
 .navigation .dropdown-menu {
   padding: 0px;
   border: 0px;
-  border-top: 5px solid #9bd1f5;
+  /*border-top: 5px solid #00318b;*/
   background: #fff;
   border-radius: 0px;
 }
@@ -482,8 +502,8 @@ a:focus {
 .navigation .dropdown-submenu:hover > .dropdown-item,
 .navigation .dropdown-item.active,
 .navigation .dropdown-item:hover {
-  background: rgb(36 182 225 / 5%);
-  color: #669ff3;
+  background: rgb(255 147 3);
+  color: #fff;
 }
 .navigation button:focus {
   outline: 0;
@@ -524,8 +544,8 @@ a:focus {
   background: #fff;
   /* background: url("../images/bg/slider-bg-1.jpg") no-repeat; */
   background-size: cover;
- /* min-height: 250px;*/
-  max-height: 270px;
+ /* min-height: 250px;
+  max-height: 270px;*/
 }
 .banner .block {
   padding: 80px 0px 160px;
@@ -552,7 +572,7 @@ a:focus {
 
 .divider {
   height: 3px;
-  background: #042a93;
+  background: #ffc107;
 }
 
 @media (max-width: 480px) {
@@ -1410,8 +1430,7 @@ a:focus {
 
 .footer {
   padding-bottom: 10px;
-  background: rgb(3,1,27);
-  background: linear-gradient(137deg, rgba(3,1,27,1) 0%, rgba(16,16,187,1) 59%, rgba(17,125,224,1) 96%);
+  background: linear-gradient(137deg, rgb(255 72 5) 0%, #ff8309 59%, rgb(255 75 5) 96%);
 }
 .footer .copyright a {
   font-weight: 600;
@@ -1493,7 +1512,7 @@ a:focus {
 
 .backtop {
   position: fixed;
-  background: #223a66;
+  background: #975909;
   z-index: 9999;
   display: inline-block;
   right: 55px;
@@ -1521,7 +1540,7 @@ a:focus {
   }
 }
 .backtop:hover {
-  background-color: #e12454;
+  background-color: #e1be24;
 }
 .backtop i {
   color: #fff;
