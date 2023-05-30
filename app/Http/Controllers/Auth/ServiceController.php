@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\PostAbout;
 use App\Models\Service;
+use App\Models\Category;
 use App\Models\SubAbout;
+use App\Models\Visitor;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -15,7 +17,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $services = Service::with('users')->paginate(8);
+        $services = Service::with('users')->orderBy('id', 'asc')->paginate(10);
         return view('auth.services.index', compact('services'));
     }
 
@@ -54,28 +56,33 @@ class ServiceController extends Controller
      */
     public function show($id)
     {
+		$cat = Category::all();
         $navmenu = PostAbout::all();
         $submenu = SubAbout::all();
         $services = Service::where('id',$id)->get();
-        return view('website.services.index',compact('services','navmenu','submenu'));
+		$visitors = Visitor::select('visits')->sum('visits');
+        return view('website.services.index',compact('services','navmenu','submenu','cat','visitors'));
        
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Service $service)
     {
-        //
+        return view('auth.services.edit', compact('service'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+	public function update(Request $request, Service $service)
     {
-        //
+        $service->update($request->all());
+        // dd($request->all());
+        return to_route('services.index')->with('warning', 'Edit Data Update successfully');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -84,6 +91,6 @@ class ServiceController extends Controller
     {
          $Service->delete();
 
-        return to_route('services.index')->with('success', 'posts Data deleted successfully');
+        return to_route('services.index')->with('success', ' Deleted Data  successfully');
     }
 }
