@@ -5,7 +5,7 @@
   <!-- Basic Page Needs
   ================================================== -->
   <meta charset="utf-8">
-  <title>Novena- Health Care &amp; Medical template</title>
+  <title>template</title>
 
   <!-- Mobile Specific Metas
   ================================================== -->
@@ -38,11 +38,10 @@
 		<div class="container-fluid bg-head">
 			<div class="row align-items-center ">
 				<div class="col-lg-12 text-center py-5 ">
-					<img src="{{ asset('assets/website/images/web/text.png') }}" alt="" class="img-fluid ">
+					<img src="{{ asset('assets/website/images/web/text.png') }}" alt="" class="img-fluid w-75">
 				</div>
 				
-			</div>
-			
+			</div> 
 		</div>
 		<nav class="navbar navbar-expand-lg navigation bg-navmenu" id="navbar">
 			<div class="container">
@@ -54,27 +53,15 @@
 	
 				<div class="collapse navbar-collapse text-center" id="navbarmain">
 					<ul class="navbar-nav ml-auto mr-auto">
-						<li class="nav-item active"><a class="nav-link"
-								href="{{ route('home') }}">หน้าหลัก</a></li>
-
-						{{-- <li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown05"
-								data-toggle="dropdown" aria-haspopup="true"
-								aria-expanded="false">ประกาศ/ข่าว <i class="icofont-thin-down"></i></a>
-							<ul class="dropdown-menu" aria-labelledby="dropdown05">
-
-								@foreach ($cat as $cat_row)
-
-								<li><a class="dropdown-item"
-										href="{{ route('website.postsall.show', $cat_row->id) }}">{{
-										$cat_row->name}}</a></li>
-
-								@endforeach
-
-							</ul>
-						</li> --}}
+						<li class="nav-item active">
+							<a class="nav-link" href="{{ route('home') }}">หน้าหลัก</a>
+						</li>
 						@foreach ($navmenu as $menu)
-
+						@if (!$menu->status == 1)
+						<li class="nav-item">
+							<a class="nav-link" href="{{ route('website.postabouts.show', $menu->id) }}">{{$menu->title}}</a>							
+						</li>					
+						@else
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown05"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{
@@ -97,7 +84,12 @@
 								@endforeach
 
 							</ul>
-						</li>
+						</li>	
+						
+							
+						@endif
+
+						
 						@endforeach
 
 					</ul>

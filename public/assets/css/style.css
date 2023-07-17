@@ -1858,7 +1858,7 @@ h4, .h4 {
       font-size: 1.5rem; } }
 
 h5, .h5 {
-  font-size: 1.25rem; }
+  font-size: 1.75rem; }
 
 h6, .h6 {
   font-size: 1rem; }
@@ -2134,7 +2134,7 @@ progress {
   display: none !important; }
 
 .lead {
-  font-size: 1.25rem;
+  font-size: 1.75rem;
   font-weight: 300; }
 
 .display-1 {
@@ -2204,7 +2204,7 @@ progress {
 
 .blockquote {
   margin-bottom: 1rem;
-  font-size: 1.25rem; }
+  font-size: 1.75rem; }
   .blockquote > :last-child {
     margin-bottom: 0; }
 
@@ -3514,12 +3514,12 @@ progress {
 .col-form-label-lg {
   padding-top: calc(0.94rem + 1px);
   padding-bottom: calc(0.94rem + 1px);
-  font-size: 1.25rem; }
+  font-size: 1.75rem; }
 
 .col-form-label-sm {
   padding-top: calc(0.5rem + 1px);
   padding-bottom: calc(0.5rem + 1px);
-  font-size: 0.875rem; }
+  font-size: 1.5rem; }
 
 .form-text {
   margin-top: 0.25rem;
@@ -3530,7 +3530,7 @@ progress {
   display: block;
   width: 100%;
   padding: 0.94rem 1.375rem;
-  font-size: 0.8125rem;
+  font-size: 1.5rem;
   font-weight: 400;
   line-height: 1;
   color: #212529;
@@ -3644,7 +3644,7 @@ progress {
 .form-control-sm {
   min-height: 2.575rem;
   padding: 0.5rem 0.81rem;
-  font-size: 0.875rem;
+  font-size: 1.5rem;
   border-radius: 0.2rem; }
   .form-control-sm::file-selector-button {
     padding: 0.5rem 0.81rem;
@@ -3660,7 +3660,7 @@ progress {
 .form-control-lg {
   min-height: 3.175rem;
   padding: 0.94rem 1.94rem;
-  font-size: 1.25rem;
+  font-size: 1.75rem;
   border-radius: 0.3rem; }
   .form-control-lg::file-selector-button {
     padding: 0.94rem 1.94rem;
@@ -3740,14 +3740,14 @@ textarea.form-control-lg {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
   padding-left: 0.5rem;
-  font-size: 0.875rem;
+  font-size: 1.5rem;
   border-radius: 0.2rem; }
 
 .form-select-lg {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   padding-left: 1rem;
-  font-size: 1.25rem;
+  font-size: 1.75rem;
   border-radius: 0.3rem; }
 
 .form-check {
@@ -4018,7 +4018,7 @@ textarea.form-control-lg {
   -ms-flex-align: center;
   align-items: center;
   padding: 0.375rem 0.75rem;
-  font-size: 0.8125rem;
+  font-size: 1.5rem;
   font-weight: 400;
   line-height: 1;
   color: #212529;
@@ -4033,7 +4033,7 @@ textarea.form-control-lg {
 .input-group-lg > .input-group-text,
 .input-group-lg > .btn {
   padding: 0.94rem 1.94rem;
-  font-size: 1.25rem;
+  font-size: 1.75rem;
   border-radius: 0.3rem; }
 
 .input-group-sm > .form-control,
@@ -4041,7 +4041,7 @@ textarea.form-control-lg {
 .input-group-sm > .input-group-text,
 .input-group-sm > .btn {
   padding: 0.5rem 0.81rem;
-  font-size: 0.875rem;
+  font-size: 1.5rem;
   border-radius: 0.2rem; }
 
 .input-group-lg > .form-select,
@@ -4078,7 +4078,7 @@ textarea.form-control-lg {
   max-width: 100%;
   padding: 0.25rem 0.5rem;
   margin-top: .1rem;
-  font-size: 0.875rem;
+  font-size: 1.5rem;
   color: #fff;
   background-color: rgba(25, 135, 84, 0.9);
   border-radius: 0.25rem; }
@@ -4154,7 +4154,7 @@ textarea.form-control-lg {
   max-width: 100%;
   padding: 0.25rem 0.5rem;
   margin-top: .1rem;
-  font-size: 0.875rem;
+  font-size: 1.5rem;
   color: #fff;
   background-color: rgba(220, 53, 69, 0.9);
   border-radius: 0.25rem; }
@@ -4231,7 +4231,7 @@ textarea.form-control-lg {
   background-color: transparent;
   border: 1px solid transparent;
   padding: 0.875rem 2.5rem;
-  font-size: 0.875rem;
+  font-size: 1.5rem;
   border-radius: 0.1875rem;
   -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
@@ -4687,12 +4687,12 @@ textarea.form-control-lg {
 
 .btn-lg, .btn-group-lg > .btn {
   padding: 1rem 3rem;
-  font-size: 0.875rem;
+  font-size: 1.5rem;
   border-radius: 0.1875rem; }
 
 .btn-sm, .btn-group-sm > .btn {
   padding: 0.5rem 0.81rem;
-  font-size: 0.875rem;
+  font-size: 1.5rem;
   border-radius: 0.1875rem; }
 
 .fade {
@@ -4949,7 +4949,7 @@ textarea.form-control-lg {
   display: block;
   padding: 0.5rem 1rem;
   margin-bottom: 0;
-  font-size: 0.875rem;
+  font-size: 1.5rem;
   color: #343a40;
   white-space: nowrap; }
 
@@ -5199,7 +5199,7 @@ textarea.form-control-lg {
   padding-top: 0.2rem;
   padding-bottom: 0.3125rem;
   margin-right: 1rem;
-  font-size: 1.25rem;
+  font-size: 1.75rem;
   text-decoration: none;
   white-space: nowrap; }
 
@@ -5236,7 +5236,7 @@ textarea.form-control-lg {
 
 .navbar-toggler {
   padding: 0.25rem 0.75rem;
-  font-size: 1.25rem;
+  font-size: 1.75rem;
   line-height: 1;
   background-color: transparent;
   border: 1px solid transparent;
@@ -5940,7 +5940,7 @@ textarea.form-control-lg {
   flex-wrap: wrap;
   padding: 0.56rem 1.13rem;
   margin-bottom: 1rem;
-  font-size: 0.875rem;
+  font-size: 1.5rem;
   list-style: none;
   background-color: transparent; }
 
@@ -6018,7 +6018,7 @@ textarea.form-control-lg {
 
 .pagination-lg .page-link {
   padding: 0.75rem 1.5rem;
-  font-size: 1.25rem; }
+  font-size: 1.75rem; }
 
 .pagination-lg .page-item:first-child .page-link {
   border-top-left-radius: 0.3rem;
@@ -6030,7 +6030,7 @@ textarea.form-control-lg {
 
 .pagination-sm .page-link {
   padding: 0.25rem 0.5rem;
-  font-size: 0.875rem; }
+  font-size: 1.5rem; }
 
 .pagination-sm .page-item:first-child .page-link {
   border-top-left-radius: 0.2rem;
@@ -6505,7 +6505,7 @@ textarea.form-control-lg {
 .toast {
   width: 350px;
   max-width: 100%;
-  font-size: 0.875rem;
+  font-size: 1.5rem;
   pointer-events: auto;
   background-color: rgba(255, 255, 255, 0.85);
   background-clip: padding-box;
@@ -6908,7 +6908,7 @@ textarea.form-control-lg {
   word-spacing: normal;
   white-space: normal;
   line-break: auto;
-  font-size: 0.875rem;
+  font-size: 1.5rem;
   word-wrap: break-word;
   background-color: #fff;
   background-clip: padding-box;
@@ -11149,7 +11149,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6,
   font-family: "ubuntu-medium", sans-serif; }
 
 p {
-  font-size: 0.875rem; }
+  font-size: 1.5rem; }
 
 h1, .h1,
 .h1 {
@@ -11173,10 +11173,10 @@ h5, .h5,
 
 h6, .h6,
 .h6 {
-  font-size: .9375rem; }
+  font-size: 1.5rem; }
 
 p {
-  font-size: .9375rem;
+  font-size: 1.5rem;
   line-height: 1.5; }
 
 .display-1 {
@@ -11204,7 +11204,7 @@ p {
       font-size: 1.5rem; } }
 
 .display-5 {
-  font-size: 1.25rem; }
+  font-size: 1.75rem; }
   @media (max-width: 991px) {
     .display-5 {
       font-size: 1rem; } }
@@ -11294,7 +11294,7 @@ code {
   padding: 5px;
   color: #fe7c96;
   font-family: "ubuntu-light", sans-serif;
-  font-size: 0.875rem;
+  font-size: 1.5rem;
   border-radius: 4px; }
 
 .page-header {
@@ -11305,7 +11305,7 @@ code {
 
 .page-title {
   color: #343a40;
-  font-size: 1.125rem;
+  font-size: 1.75rem;
   margin-bottom: 0; }
   .page-title .page-title-icon {
     display: inline-block;
@@ -11316,7 +11316,7 @@ code {
     -webkit-box-shadow: 0px 3px 8.3px 0.7px rgba(163, 93, 255, 0.35);
     box-shadow: 0px 3px 8.3px 0.7px rgba(163, 93, 255, 0.35); }
     .page-title .page-title-icon i {
-      font-size: .9375rem;
+      font-size: 1.5rem;
       line-height: 36px; }
 
 /* Footer */
@@ -11421,7 +11421,7 @@ code {
   color: #000000; }
 
 .text-small {
-  font-size: 12px; }
+  font-size: 14px; }
 
 .flex-grow {
   -webkit-box-flex: 1;
@@ -11670,10 +11670,10 @@ code {
       #proBanner .btn.buy-now-btn {
         min-width: 80px;
         padding: 1rem .5rem;
-        font-size: 12px; } }
+        font-size: 14px; } }
   #proBanner .btn#bannerClose i {
     margin-right: 1rem;
-    font-size: 1.25rem; }
+    font-size: 1.75rem; }
     @media (max-width: 766px) {
       #proBanner .btn#bannerClose i {
         font-size: 1rem;
@@ -11681,7 +11681,7 @@ code {
   #proBanner a {
     text-decoration: none; }
     #proBanner a i {
-      font-size: 1.25rem; }
+      font-size: 1.75rem; }
       @media (max-width: 766px) {
         #proBanner a i {
           font-size: 1rem; } }
@@ -11753,7 +11753,7 @@ code {
     margin-left: auto;
     width: 40%; }
     .card-revenue-table .revenue-item .revenue-amount p {
-      font-size: 1.25rem;
+      font-size: 1.75rem;
       font-family: "roboto", sans-serif;
       font-weight: 600;
       text-align: right; }
@@ -11770,7 +11770,7 @@ code {
     font-weight: 500; }
   .card-revenue .badge {
     background-color: rgba(255, 255, 255, 0.2);
-    font-size: 1.125rem;
+    font-size: 1.75rem;
     padding: 0.5rem 1.25rem; }
 
 .product-chart-wrapper {
@@ -12032,7 +12032,7 @@ code {
 
 /* Buttons */
 .btn {
-  font-size: 0.875rem;
+  font-size: 1.5rem;
   line-height: 1;
   font-family: "ubuntu-bold", sans-serif;
   /* Buttons with only icons */
@@ -12044,9 +12044,9 @@ code {
   .btn.btn-fw {
     min-width: 150px; }
   .btn.btn-sm, .btn-group-sm > .btn {
-    font-size: 0.875rem; }
+    font-size: 1.25rem; }
   .btn.btn-lg, .btn-group-lg > .btn {
-    font-size: 0.875rem; }
+    font-size: 1.5rem; }
   .btn.btn-xs {
     padding: 0.5rem 0.75rem;
     font-size: 0.625rem; }
@@ -12598,9 +12598,9 @@ code {
   .btn-gradient-secondary:hover {
     opacity: .8; }
   .btn-gradient-secondary:not(.btn-gradient-light) {
-    color: #ffffff; }
+    color: #000000; }
     .btn-gradient-secondary:not(.btn-gradient-light):hover, .btn-gradient-secondary:not(.btn-gradient-light):focus, .btn-gradient-secondary:not(.btn-gradient-light):active {
-      color: #ffffff; }
+      color: #000000; }
 
 .btn-gradient-success {
   background: -webkit-gradient(linear, left top, right top, from(#84d9d2), to(#07cdae));
@@ -12615,9 +12615,9 @@ code {
   .btn-gradient-success:hover {
     opacity: .8; }
   .btn-gradient-success:not(.btn-gradient-light) {
-    color: #ffffff; }
+    color: #000; }
     .btn-gradient-success:not(.btn-gradient-light):hover, .btn-gradient-success:not(.btn-gradient-light):focus, .btn-gradient-success:not(.btn-gradient-light):active {
-      color: #ffffff; }
+      color: #000; }
 
 .btn-gradient-info {
   background: -webkit-gradient(linear, left top, right top, from(#90caf9), color-stop(99%, #047edf));
@@ -12632,9 +12632,9 @@ code {
   .btn-gradient-info:hover {
     opacity: .8; }
   .btn-gradient-info:not(.btn-gradient-light) {
-    color: #ffffff; }
+    color: #000; }
     .btn-gradient-info:not(.btn-gradient-light):hover, .btn-gradient-info:not(.btn-gradient-light):focus, .btn-gradient-info:not(.btn-gradient-light):active {
-      color: #ffffff; }
+      color: #000; }
 
 .btn-gradient-warning {
   background: -webkit-gradient(linear, left top, right top, from(#f6e384), to(#ffd500));
@@ -12706,14 +12706,14 @@ code {
 .breadcrumb {
   border: 1px solid #ebedf2; }
   .breadcrumb .breadcrumb-item {
-    font-size: 0.875rem; }
+    font-size: 1.5rem; }
     .breadcrumb .breadcrumb-item.active {
       color: rgba(52, 58, 64, 0.8); }
   .breadcrumb.breadcrumb-custom {
     padding: 0 0;
     border-color: #dbe3e6; }
     .breadcrumb.breadcrumb-custom .breadcrumb-item {
-      font-size: 0.875rem;
+      font-size: 1.5rem;
       background: #dbe3e6;
       padding: 0.56rem 10px;
       color: #000000;
@@ -12961,7 +12961,7 @@ code {
     margin-bottom: 0.75rem;
     text-transform: capitalize;
     font-family: "ubuntu-medium", sans-serif;
-    font-size: 1.125rem; }
+    font-size: 1.75rem; }
   .card .card-subtitle {
     font-family: "ubuntu-regular", sans-serif;
     margin-top: 0.625rem;
@@ -13074,7 +13074,7 @@ code {
   .form-check .form-check-label {
     display: block;
     margin-left: 1.75rem;
-    font-size: 0.875rem;
+    font-size: 1.5rem;
     line-height: 1.5; }
     .rtl .form-check .form-check-label {
       margin-left: 0;
@@ -13123,7 +13123,7 @@ code {
       -webkit-transform: scale(0);
       transform: scale(0);
       content: '\F12C';
-      font-size: .9375rem;
+      font-size: 1.5rem;
       font-weight: bold;
       color: #ffffff; }
     .form-check .form-check-label input[type="checkbox"]:checked + .input-helper:before {
@@ -13284,7 +13284,7 @@ code {
 
 .dropdown .dropdown-menu {
   margin-top: .75rem;
-  font-size: 0.875rem;
+  font-size: 1.5rem;
   -webkit-box-shadow: 0px 1px 15px 1px rgba(230, 234, 236, 0.35);
   box-shadow: 0px 1px 15px 1px rgba(230, 234, 236, 0.35); }
   .dropdown .dropdown-menu .dropdown-item {
@@ -13314,7 +13314,7 @@ code {
 .form-control {
   border: 1px solid #ebedf2;
   font-family: "ubuntu-regular", sans-serif;
-  font-size: 0.8125rem; }
+  font-size: 1.5rem; }
   .form-control:focus {
     background-color: #ffffff;
     color: #000000;
@@ -13361,7 +13361,7 @@ select.form-control {
       outline: 1px solid #3e4b5b; }
 
 .form-group label {
-  font-size: 0.875rem;
+  font-size: 1.5rem;
   line-height: 1;
   vertical-align: top;
   margin-bottom: .5rem; }
@@ -13391,7 +13391,7 @@ select.form-control {
     align-items: center;
     padding: 15px 15px;
     font-family: "ubuntu-regular", sans-serif;
-    font-size: 0.875rem; }
+    font-size: 1.5rem; }
     .icons-list > div i {
       display: inline-block;
       font-size: 20px;
@@ -13404,7 +13404,7 @@ ul,
 ol,
 dl {
   padding-left: 1rem;
-  font-size: 0.875rem; }
+  font-size: 1.5rem; }
   ul li,
   ol li,
   dl li {
@@ -13563,7 +13563,7 @@ dl {
       -ms-flex-pack: center;
       justify-content: center; }
       .preview-list .preview-item .preview-thumbnail .preview-icon i {
-        font-size: 1.125rem;
+        font-size: 1.75rem;
         margin: 0; }
     .preview-list .preview-item .preview-thumbnail .badge {
       border: 2px solid color(white);
@@ -13635,7 +13635,7 @@ dl {
   .table th,
   .table td {
     vertical-align: middle;
-    font-size: 0.875rem;
+    font-size: 1.5rem;
     line-height: 1;
     white-space: nowrap;
     padding: 0.9375rem; }
@@ -13684,7 +13684,7 @@ dl {
     list-style: none;
     margin-bottom: 0; }
     .list-wrapper ul li {
-      font-size: .9375rem;
+      font-size: 1.5rem;
       padding: .4rem 0;
       border-bottom: 1px solid #ebedf2; }
       .list-wrapper ul li:first-child {
@@ -13730,14 +13730,14 @@ dl {
   .auth form .form-group .form-control {
     background: transparent;
     border-radius: 0;
-    font-size: .9375rem; }
+    font-size: 1.5rem; }
 
 .auth form .auth-form-btn {
   height: 50px;
   line-height: 1.5; }
 
 .auth form .auth-link {
-  font-size: 0.875rem; }
+  font-size: 1.5rem; }
   .auth form .auth-link:hover {
     color: initial; }
 
@@ -13810,7 +13810,7 @@ dl {
         -webkit-box-shadow: none;
         box-shadow: none; }
       .navbar .navbar-menu-wrapper .navbar-toggler:not(.navbar-toggler-right) {
-        font-size: 1.5rem; }
+        font-size: 1.75rem; }
         @media (max-width: 991px) {
           .navbar .navbar-menu-wrapper .navbar-toggler:not(.navbar-toggler-right) {
             display: none; } }
@@ -13820,22 +13820,22 @@ dl {
           padding-right: 11px;
           border-right: none; } }
     .navbar .navbar-menu-wrapper .search-field .input-group input {
-      font-size: 0.875rem;
+      font-size: 1.5rem;
       padding: .5rem; }
       .navbar .navbar-menu-wrapper .search-field .input-group input:-ms-input-placeholder {
-        font-size: 0.875rem;
+        font-size: 1.5rem;
         color: #9c9fa6;
         font-family: "ubuntu-light", sans-serif; }
       .navbar .navbar-menu-wrapper .search-field .input-group input:-moz-placeholder {
-        font-size: 0.875rem;
+        font-size: 1.5rem;
         color: #9c9fa6;
         font-family: "ubuntu-light", sans-serif; }
       .navbar .navbar-menu-wrapper .search-field .input-group input::-moz-placeholder {
-        font-size: 0.875rem;
+        font-size: 1.5rem;
         color: #9c9fa6;
         font-family: "ubuntu-light", sans-serif; }
       .navbar .navbar-menu-wrapper .search-field .input-group input::-webkit-input-placeholder {
-        font-size: 0.875rem;
+        font-size: 1.5rem;
         color: #9c9fa6;
         font-family: "ubuntu-light", sans-serif; }
     .navbar .navbar-menu-wrapper .search-field .input-group i {
@@ -13877,7 +13877,7 @@ dl {
       align-items: center; }
       .navbar .navbar-menu-wrapper .navbar-nav .nav-item .nav-link {
         color: inherit;
-        font-size: 0.875rem;
+        font-size: 1.5rem;
         margin-left: 1.5rem;
         margin-right: 1.5rem;
         height: 70px;
@@ -13892,7 +13892,7 @@ dl {
             margin-left: .8rem;
             margin-right: .8rem; } }
         .navbar .navbar-menu-wrapper .navbar-nav .nav-item .nav-link i {
-          font-size: 1.25rem; }
+          font-size: 1.75rem; }
       .navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-toggle:after {
         color: #b66dff;
         font-size: 1rem; }
@@ -14168,7 +14168,7 @@ dl {
         .sidebar .nav .nav-item .nav-link i {
           color: inherit; }
           .sidebar .nav .nav-item .nav-link i.menu-icon {
-            font-size: 1.125rem;
+            font-size: 1.75rem;
             line-height: 1;
             margin-left: auto;
             color: #0069c3; }
@@ -14180,7 +14180,7 @@ dl {
           .sidebar .nav .nav-item .nav-link i.menu-arrow {
             font: normal normal normal 24px/1 "Material Design Icons";
             line-height: 1;
-            font-size: 1.125rem;
+            font-size: 1.75rem;
             margin-left: auto;
             color: #0069c3; }
             .rtl .sidebar .nav .nav-item .nav-link i.menu-arrow {
@@ -14198,7 +14198,7 @@ dl {
         .sidebar .nav .nav-item .nav-link .menu-title {
           color: inherit;
           display: inline-block;
-          font-size: 0.875rem;
+          font-size: 1.5rem;
           line-height: 1;
           vertical-align: middle; }
         .sidebar .nav .nav-item .nav-link .badge {
@@ -14233,7 +14233,7 @@ dl {
             margin-left: auto;
             margin-right: 1rem; }
         .sidebar .nav .nav-item.nav-profile .nav-link .nav-profile-badge {
-          font-size: 1.125rem;
+          font-size: 1.75rem;
           margin-left: auto; }
           .rtl .sidebar .nav .nav-item.nav-profile .nav-link .nav-profile-badge {
             margin-left: 0;
@@ -14260,7 +14260,7 @@ dl {
           color: #888;
           padding: 0.75rem 2rem 0.75rem 2rem;
           position: relative;
-          font-size: 0.8125rem;
+          font-size: 1.5rem;
           line-height: 1;
           height: auto;
           border-top: 0; }

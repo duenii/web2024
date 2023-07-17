@@ -39,13 +39,13 @@
                         <form method="post" action="{{ route('posts.store') }}" class="forms-sample" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
-                                <label for="exampleInputUsername2" class="col-sm-3 col-form-label">tatle</label>
+                                <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Title</label>
                                 <div class="col-sm-9">
                                     <input type="text" name="title" class="form-control" id="exampleInputUsername2" placeholder="Title" value="{{ old('title')}}" require>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="exampleFormControlSelect3" class="col-sm-3 col-form-label">type postnews</label>
+                                <label for="exampleFormControlSelect3" class="col-sm-3 col-form-label">Type postnews</label>
                                 <div class="col-sm-9">
                                     <select class="form-control form-control-sm" name="category" id="exampleFormControlSelect3" require>
                                         <option selected>เลือกประเภทข่าว</option>

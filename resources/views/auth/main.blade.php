@@ -28,8 +28,8 @@
                     </h4>
                     <h1 class="mb-5">{{ $posts }}</h1>
                     <a  href="{{ url('/auth/posts') }}"> 
-						<button type="button" class="btn btn-gradient-danger btn-lg"><h6 class="card-text"> View Details</h6></button>
-					  </a>
+                      <button type="button" class="btn btn-gradient-danger btn-lg"><p class="card-text"> View Details</p></button>
+                      </a>
 					  
                   </div>
                 </div>
@@ -41,7 +41,7 @@
                     <h4 class="font-weight-normal mb-3">Total Banner News<i class="mdi mdi-image-area mdi-24px float-right"></i>
                     </h4>
                     <h1 class="mb-5">{{ $banner }}</h1>
-                    <a  href="{{ url('/auth/banner' )}}"><button type="button" class="btn btn-gradient-info"> <h6 class="card-text">View Details  </h6></button></a>
+                    <a  href="{{ url('/auth/banner' )}}"><button type="button" class="btn btn-gradient-info"> <p class="card-text">View Details  </p></button></a>
                   </div>
                 </div>
               </div>
@@ -52,7 +52,7 @@
                     <h4 class="font-weight-normal mb-3">Total Upload Files<i class="mdi mdi-folder-upload mdi-24px float-right"></i>
                     </h4>
                      <h1 class="mb-5">{{ $files }}</h1>
-                    <a class="" href="{{ url('/auth/files' )}}"><button type="button" class="btn btn-gradient-success"><h6 class="card-text">View Details  </h6></button></a>
+                    <a class="" href="{{ url('/auth/files' )}}"><button type="button" class="btn btn-gradient-success"><p class="card-text">View Details  </p></button></a>
                   </div>
                 </div>
               </div>

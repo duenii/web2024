@@ -15,7 +15,32 @@
         <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body table-responsive">
+                        {{-- <div class="col-lg-6 mb-2 ">
+                            <form  action="">
+                                @csrf       
+                                <div class="input-group col-lg-12">
+                                    <input type="search" name="search" value="{{ $search }}" class="form-control" placeholder="ค้นหาโดยชื่อบริการ......." aria-label="Recipient's username" aria-describedby="button-addon2">
+                                    <button class="btn btn-outline-secondary">Search</button>
+                                </div>
+                            </form>
+                        </div> --}}
+
+                        {{-- <form class="row g-3">
+                            @csrf  
+                            <div class="col-auto">
+                              <label for="staticEmail2" >ค้นหาข้อมูล : </label>				
+                            </div>
+                            <div class="col-auto">
+                             
+                              <input type="search" name="search" value="{{ $search }}" class="form-control"  placeholder="ค้นหาโดยชื่อ........">
+                            </div>
+                            <div class="col-auto">
+                              <button type="submit" class="btn btn-primary mb-3">Search</button>
+                            </div>
+                          </form> --}}
+
+
 
                     @if (count($services) > 0 )
 
@@ -38,7 +63,7 @@
                        
                         <table class="table table-hover mb-2 table-bordered ">
                             <thead>
-                                <tr>
+                                <tr class="text-center">
                                     <th>#</th>
                                     <th>Title</th>                                
                                     <th>Link</th>
@@ -49,16 +74,16 @@
                             <tbody>
                                 @foreach($services as $rowservice)
                                 <tr>
-                                    <td>{{ $rowservice->id }}</td>
+                                    <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>{{ $rowservice->title }}</td>
-                                    <td> 
+                                    <td class="text-center"> 
                                         @if(!$rowservice->link == '')
                                            <a href="{{ $rowservice->link }}" class="btn btn-outline-info btn-sm"> <i class="mdi mdi-link-variant"></i> link</a>
                                         @endif
                                     </td>
                                     {{-- <td>{{ $rowservice->users->name }}</td> --}}
-                                    <td> {{ date('d M Y', strtotime($rowservice->updated_at)) }} </td>
-                                    <td>
+                                    <td class="text-center"> {{ date('d M Y', strtotime($rowservice->updated_at)) }} </td>
+                                    <td class="text-center">
                                         
                                           <a href="{{ route('services.edit', $rowservice->id) }}" class="btn btn-warning btn-sm">Edit</a>
                        

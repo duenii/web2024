@@ -6,14 +6,14 @@
  */
 
 /*=== MEDIA QUERY ===*/
-@import url("https://fonts.googleapis.com/css?family=Exo:500,600,700|Roboto&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&display=swap');
 html {
   overflow-x: hidden;
 }
 
 body {
   line-height: 1.6;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Chakra Petch', sans-serif;
   -webkit-font-smoothing: antialiased;
   font-size: 16px;
   color: #6F8BA4;
@@ -22,9 +22,8 @@ body {
  
 }
 .bg-head{
-    background: url("../images/web/headweb.jpg");
- 
-    background-size: cover;
+    background: url("../images/web/headweb.png");
+     background-size: cover;
     position: relative;
     background-position:top;
     background-repeat: no-repeat;
@@ -40,7 +39,7 @@ body {
 
 }
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
-  font-family: "Exo", sans-serif;
+  font-family: 'Chakra Petch', sans-serif;
   font-weight: 700;
   color: #222;
 }
@@ -87,7 +86,7 @@ p {
 
 .bg-navmenu{
  /*add style*/
- background: #ff4805 !important;
+ background: #4c219f !important;
  padding: 10px !important;
 }
 .container-fluid{
@@ -135,7 +134,7 @@ input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, inp
   font-weight: 700;
   letter-spacing: 0.5px;
   padding: 0.75rem 2rem;
-  font-family: "Exo", sans-serif;
+  font-family: 'Chakra Petch', sans-serif;
   text-transform: uppercase;
   border-radius: 5px;
   border: 2px solid transparent;
@@ -151,14 +150,14 @@ input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, inp
 }
 
 .btn-main {
-  background: #223a66;
+  background: #ff6907;
   color: #fff;
-  border-color: #223a66;
+  border-color: #fe8007;
 }
 .btn-main:hover {
-  background: #e12454;
-  border-color: #e12454;
+  background: #ffbc01;
   color: #fff;
+  border-color: #feb007;
 }
 
 .btn-main-2 {

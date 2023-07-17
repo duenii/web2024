@@ -7,6 +7,7 @@ use App\Models\Banner;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Intervention\Image\Facades\Image;
 
 
 class BannerController extends Controller
@@ -36,18 +37,48 @@ class BannerController extends Controller
     public function store(Request $request)
     {
         try{
-            if($request->has('file')){
-                $file = $request->file;
-                $fileName = time(). $file->getClientOriginalName();
-    
-                $imgePath = public_path('/images/banners');
-                $file->move($imgePath, $fileName);
-    
+            if($request->hasFile('file')) {
+                //get filename with extension
+                $filenamewithextension = $request->file('file')->getClientOriginalName();
+         
+                //get filename without extension
+                $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+         
+                //get file extension
+                $extension = $request->file('file')->getClientOriginalExtension();
+         
+                //filename to store
+                $filenametostore = $filename.'_'.time().'.'.$extension;
+         
+                //Upload File
+                $request->file('file')->storeAs('public/images/banners', $filenametostore);
+               // $request->file('file')->public_path('storage/images/banners'.$filenametostore);
+             //   $request->file('file')->storeAs('public/images/banners/thumbnail', $filenametostore);
+               
+                //Resize image here
+                //$thumbnailpath = public_path('storage/images/posts/thumbnail/'.$filenametostore);
+                // $thumbnailpath = public_path('storage/images/banners/thumbnail/'.$filenametostore);
+                // $img = Image::make($thumbnailpath)->resize(null, 250, function($constraint) {
+                //     $constraint->aspectRatio();
+                // });
+                   // save($thumbnailpath);
+
+                  
+
+
             }
+            // if($request->has('file')){
+            //     $file = $request->file;
+            //     $fileName = time(). $file->getClientOriginalName();
+    
+            //     $imgePath = public_path('/images/banners');
+            //     $file->move($imgePath, $fileName);
+    
+            // }
             Banner::create([
                
                 'name' => $request->name,
-                'image' => $fileName,
+                'image' => $filenametostore,
                 'status' => $request->status
                 
     
@@ -86,14 +117,25 @@ class BannerController extends Controller
      */
     public function update(Request $request, Banner $banner)
     {
-        if($request->has('file')){
-            $file = $request->file;
-            $fileName = time(). $file->getClientOriginalName();
-
-            $imgePath = public_path('/images/banners');
-            $file->move($imgePath, $fileName);
+        if($request->hasFile('file')) {
+            //get filename with extension
+            $filenamewithextension = $request->file('file')->getClientOriginalName();
+     
+            //get filename without extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+     
+            //get file extension
+            $extension = $request->file('file')->getClientOriginalExtension();
+     
+            //filename to store
+            $filenametostore = $filename.'_'.time().'.'.$extension;
+     
+            //Upload File
+            $request->file('file')->storeAs('public/images/banners', $filenametostore);
+           // $request->file('file')->public_path('storage/images/banners'.$filenametostore);
+           // $request->file('file')->storeAs('public/images/banners/thumbnail', $filenametostore);
             
-            Banner::where('id',$banner->id)->update(['image' => $fileName]);
+            Banner::where('id',$banner->id)->update(['image' => $filenametostore]);
 
         }
        

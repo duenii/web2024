@@ -16,7 +16,31 @@
         <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body table-responsive">
+                        {{-- <div class="col-lg-6 mb-2 ">
+                            <form  action="">
+                                @csrf       
+                                <div class="input-group col-lg-12">
+                                    <input type="search" name="search" value="{{ $search }}" class="form-control" placeholder="ค้นหาโดยชื่อเมนูย่อย......." aria-label="Recipient's username" aria-describedby="button-addon2">
+                                    <button class="btn btn-outline-secondary">Search</button>
+                                </div>
+                            </form>
+                        </div> --}}
+
+                        <form class="row g-3">
+                            @csrf  
+                            <div class="col-auto">
+                              <label for="staticEmail2" >ค้นหาข้อมูล : </label>				
+                            </div>
+                            <div class="col-auto">
+                             
+                              <input type="search" name="search" value="{{ $search }}" class="form-control"  placeholder="ค้นหาโดยชื่อเมนูย่อย........">
+                            </div>
+                            <div class="col-auto">
+                              <button type="submit" class="btn btn-primary mb-3">Search</button>
+                            </div>
+                          </form>
+
 
                     @if (count($subabouts) > 0 )
 
@@ -40,10 +64,11 @@
                         
                         <table class="table table-hover mb-2 table-bordered">
                             <thead>
-                                <tr>
+                                <tr class="text-center">
                                     <th>#</th>
-                                    <th>Main menu</th>
+                                    
                                     <th>Title Submenu</th>
+                                    <th>Main menu</th>
                                     <th>Link</th>
                                    
                                     <th>Update</th>
@@ -52,19 +77,20 @@
                             </thead>
                             <tbody>
                                 @foreach($subabouts as $rowsub)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td class="text-secondary"> {{ $rowsub->postabouts->title }}</td>
-                                    <td>{{ $rowsub->title }}</td>                                  
-                                    <td> 
+                                <tr >
+                                    <td class="text-center">{{ $loop->iteration }}</td>
+                                    
+                                    <td>{{ $rowsub->title }}</td>      
+                                    <td class="text-success text-center"> {{ $rowsub->postabouts->title }}</td>                            
+                                    <td class="text-center"> 
                                      @if(!$rowsub->link == '')
                                         <a href="{{ $rowsub->link }}" class="btn btn-outline-info btn-sm"> <i class="mdi mdi-link-variant"></i> link</a>
                                      @endif
                                     </td>
                                     
                                     {{-- <td>{{ $rowsub->users->name }}</td> --}}
-                                    <td> {{ date('d M Y', strtotime($rowsub->updated_at)) }} </td>
-                                    <td>
+                                    <td class="text-center"> {{ date('d M Y', strtotime($rowsub->updated_at)) }} </td>
+                                    <td class="text-center">
                                         
                                           <a href="{{ route('subabouts.edit', $rowsub->id) }}" class="btn btn-warning btn-sm ">Edit</a>
                        

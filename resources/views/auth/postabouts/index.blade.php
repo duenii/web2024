@@ -16,7 +16,30 @@
         <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body table-responsive">
+                        {{-- <div class="col-lg-6 mb-2 ">
+                            <form  action="">
+                                @csrf       
+                                <div class="input-group col-lg-12">
+                                    <input type="search" name="search" value="{{ $search }}" class="form-control" placeholder="ค้นหาโดยชื่อเมนูหลัก......." aria-label="Recipient's username" aria-describedby="button-addon2">
+                                    <button class="btn btn-outline-secondary">Search</button>
+                                </div>
+                            </form>
+                        </div> --}}
+
+                        <form class="row g-3">
+                            @csrf  
+                            <div class="col-auto">
+                              <label for="staticEmail2" >ค้นหาข้อมูล : </label>				
+                            </div>
+                            <div class="col-auto">
+                             
+                              <input type="search" name="search" value="{{ $search }}" class="form-control"  placeholder="ค้นหาโดยชื่อเมนูหลัก........">
+                            </div>
+                            <div class="col-auto">
+                              <button type="submit" class="btn btn-primary mb-3">Search</button>
+                            </div>
+                          </form>
 
                     @if (count($postabouts) > 0 )
 
@@ -40,7 +63,7 @@
                     
                         <table class="table table-hover table-bordered">
                             <thead>
-                                <tr>
+                                <tr class="text-center">
                                     <th>#</th>
                                     <th>Title</th>
                                     {{-- <th>link</th>                                    --}}
@@ -51,18 +74,18 @@
                             </thead>
                             <tbody>
                                 @foreach($postabouts as $rowabout)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $rowabout->title }}</td>                                  
+                                <tr >
+                                    <td class="text-center">{{ $loop->iteration }}</td>
+                                    <td >{{ $rowabout->title }}</td>                                  
                                     {{-- <td> 
                                      @if(!$rowabout->link == '')
                                         <a href="{{ $rowabout->link }}" class="btn btn-outline-info btn-sm"> <i class="mdi mdi-link-variant"></i> link</a>
                                      @endif
                                     </td> --}}
                                     
-                                    <td>{{ $rowabout->users->name }}</td>
-                                    <td> {{ date('d M Y', strtotime($rowabout->updated_at)) }} </td>
-                                    <td>
+                                    <td class="text-center">{{ $rowabout->users->name }}</td>
+                                    <td class="text-center"> {{ date('d M Y', strtotime($rowabout->updated_at)) }} </td>
+                                    <td class="text-center">
                                         <a href="{{ route('postabouts.edit', $rowabout->id) }}" class="btn btn-warning btn-sm ">Edit</a>
                        
                                           <!--<input type="submit" class="btn btn-danger btn-sm" value="DELETE" />-->

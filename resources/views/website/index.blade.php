@@ -21,7 +21,7 @@
 					<div class="carousel-item">
 						@endif
 
-						<img class="d-block w-100" src="{{ asset( '/images/banners/'.$ban->image) }}" alt="First slide">
+						<img class="d-block w-100" src="{{ asset( '/storage/images/banners/'.$ban->image) }}" alt="First slide">
 
 					</div>
 					@endforeach
@@ -47,26 +47,39 @@
 	<div class="row bg-fff px-5">
 
 
-		@foreach ($posts->Where('category_id', $cat_row->id)->slice(0, 3) as $post)
+		@foreach ($posts->Where('category_id', $cat_row->id)->slice(0, 6) as $post)
 
-		<div class="col-lg-3 col-md-6 ">
-			<a href="{{ route('website.posts.show', $post->id) }}">
-				<div class="department-block mb-5 mt-3">
-					<img src="{{ asset('/images/posts').'/'. $post->gallery->image }}" alt="" class="img-fluid img-thumbnail">
-					<div class="content">
-						<i class="icofont-calendar"></i> <span class="text-sm text-muted"> {{ date('d M Y'),
-							strtotime($post->created_at) }}</span>
-						<h4 class="mt-1 mb-3 title-color">{{ Str::limit($post->title, 54, '...') }}</h4>
+	
+		<div class="col-lg-3 col-md-6 pt-3 card-group">
+			<div class="card mb-3 card ">
+				
+				{{-- <a href="{{ route('website.posts.show', $post->id) }}"> <img src="{{ asset('/storage/images/posts/thumbnail').'/'. $post->gallery->image }}" class="card-img-top img-thumbnail" alt="..." style="writing-mode: vertical-rl;"> </a> --}}
 
-						<a href="{{ route('website.posts.show', $post->id) }}" class="read-more">Learn More <i
-								class="icofont-simple-right ml-2"></i></a>
+				<div class="card-body ">
+					<div style="background:url({{ asset('/storage/images/posts/thumbnail').'/'. $post->gallery->image }}) top center no-repeat; background-size: contain; height:250px;">
+
 					</div>
 				</div>
-			</a>
+				<div class="card-footer">
+					<i class="icofont-calendar"></i> <span class="text-sm text-muted"> {{ date('d M Y'),strtotime($post->created_at) }}</span>
+					<h5 class="card-title">{{$post->title}}</h5>
+				
+					<a href="{{ route('website.posts.show', $post->id) }}" class="read-more">
+						<p class="text-body-secondary">Learn More <i class="icofont-simple-right ml-2"></i></p>
+					</a>
+
+				</div>
+				
+			</div>
 		</div>
 		@endforeach
 
 
+	</div>
+	<div class="row bg-fff px-5 ">
+		<div class="col-lg-12 col-md-12 col-sm-12 text-lg-right ">
+		<a class="btn btn-main " href="{{ route('website.postsall.show',$cat_row->id)}}">View All <i class="icofont-simple-right ml-2  "></i></a>
+			</div>
 	</div>
 	@endforeach
 
@@ -116,24 +129,27 @@
 
 		<div class=" col-lg-3 col-md-6 col-sm-6 px-2 ">
 			@if ($rowser->link == '')
-			<a href="{{ route('website.services.show', $rowser->id) }}">
-				<div class="service-item card mb-4 bg-box">
+			
+				<div class="service-item card mb-4 bg-box ">
 					<div class="icon d-flex align-items-center mr-auto ml-auto py-4">
-						<i class="{{ $class_ico }} text-lg"></i>
-						<h4 class="mt-3 mb-3"> {{ $rowser->title }}</h4>
+						<a href="{{ route('website.services.show', $rowser->id) }}">
+							<i class="{{ $class_ico }} text-lg "></i>
+							<h4 class="mt-3 mb-3"> {{ $rowser->title }}</h4>
+					</a>
 					</div>
 
 				</div>
-			</a>
+			
 			@else
-			<a href="{{ $rowser->link }}">
-				<div class="service-item mb-4">
-					<div class="icon d-flex align-items-center">
-						<i class="{{ $class_ico }} text-lg"></i>
-						<h4 class="mt-3 mb-3">{{ $rowser->title}}</h4>
+			
+				<div class="service-item card mb-4 bg-box ">
+					<div class="icon d-flex align-items-center mr-auto ml-auto py-4">
+						<a href="{{ $rowser->link }}">
+							<i class="{{ $class_ico }} text-lg"></i>
+							<h4 class="mt-3 mb-3">{{ $rowser->title}}</h4></a>
 					</div>
 				</div>
-			</a>
+			
 
 			@endif
 		</div>

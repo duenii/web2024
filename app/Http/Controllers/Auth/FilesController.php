@@ -12,12 +12,21 @@ use Illuminate\Http\UploadedFile;
 
 class FilesController extends Controller
 {
-   public function index()
+    public function index(Request $request)
     {
+        $search = $request['search'] ?? "";
+        if($request != ""){
+            $files = File::where('name', 'like',"%{$search}%")->paginate(10);
+          
+        }
+        else{
+            $files = File::paginate(10);
+        }
+   
        // $posts = Post::with('gallery', 'category')->paginate(10);
         //return $posts;
-	  $files = File::paginate(10);
-        return view('auth.files.index' , compact('files'));
+	 
+        return view('auth.files.index' , compact('files','search'));
     }
 	 public function create()
     {    

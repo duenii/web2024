@@ -26,7 +26,6 @@ class CreateRequest extends FormRequest
             'title' => ['required','min:3', 'max:255', 'string'],
             'category' => ['required'],
             'file' => ['required','image', 'mimes:jpeg,png,jpg,gif,svg'],
-            'content' => ['required','min:3', 'max:5000'],
             'publish' => ['required'],
 
         ];

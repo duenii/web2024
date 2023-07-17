@@ -40,13 +40,13 @@
                             @csrf
                             @method('PUT')
                             <div class="form-group row">
-                                <label for="exampleInputUsername2" class="col-sm-3 col-form-label">title</label>
+                                <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Title</label>
                                 <div class="col-sm-9">
                                     <input type="text" name="title" class="form-control" id="exampleInputUsername2" placeholder="Title" value="{{ $post->title }}" require>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="exampleFormControlSelect3" class="col-sm-3 col-form-label">type postnews</label>
+                                <label for="exampleFormControlSelect3" class="col-sm-3 col-form-label">Type postnews</label>
                                 <div class="col-sm-9">
                                     <select class="form-control form-control-sm" name="category_id" id="exampleFormControlSelect3" require>
                                         <option selected>เลือกประเภทข่าว</option>
@@ -66,7 +66,7 @@
                                 <div class="col-sm-9">
                                     <input type="file" name="file" class="form-control file-upload-info" require>
                                      <label for="exampleInputEmail2" class="col-sm-12 col-form-label">{{ $post->gallery->image }}</label> 
-                                    <img src="{{ asset('/images/posts').'/'. $post->gallery->image }}" alt="images" width="150px">
+                                    <img src="{{ asset('/storage/images/posts/thumbnail').'/'. $post->gallery->image }}" alt="images" width="150px">
                                 </div>
                                 
                             </div>

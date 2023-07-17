@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 
 class WebsiteController extends Controller
 {
-    public function home()
+    public function show()
     {
         $posts = Post::where('publish', 1)->get();
         $cat = Category::all();
@@ -28,20 +28,6 @@ class WebsiteController extends Controller
         //dd( $post);
         return view('website.index', compact('posts','cat','banners','navmenu','submenu','services'));
     }
-
-    public function show($id)
-    {
-       // dd(compact('post'));
-       $post = Post::where('id',$id)->get();      
-       $navmenu = PostAbout::all();
-       $submenu = SubAbout::all();
-       $img = Gallery::all();
-       $cat = Category::all();
-     
-       //dd($post);
-        return view('website.posts.index',compact('post','navmenu','submenu','img','cat'));
-    }
-
     
     public function navmenu()
     {

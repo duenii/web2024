@@ -20,7 +20,7 @@
       <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
           <div class="card">
-            <div class="card-body">
+            <div class="card-body table-responsive">
               @if (count($banner) > 0 )
 
               {{-- <h4 class="card-title">Main Menu</h4> --}}
@@ -42,7 +42,7 @@
                 @endif
               <table class="table table-hover table-bordered pb-2">
                 <thead>
-                  <tr>
+                  <tr class="text-center">
                     <th>#</th>
                     <th>Image</th>
                     <th>Link</th>
@@ -53,16 +53,23 @@
                 </thead>
                 <tbody>                
                   @foreach($banner as $rowban)
-                  <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td><img src="{{ asset('/images/banners/' . $rowban->image) }}" class="w-75 h-25" /></td>
+                  <tr class="text-center">
+                    <td >{{ $loop->iteration }}</td>
+                    <td class="w-50"><img src="{{ asset('/storage/images/banners/' . $rowban->image) }}" class="w-75 h-25" /></td>
                     <td> 
                       @if(!$rowban->name == '')
-                         <a href="{{ $rowban->name }}" class="btn btn-outline-info btn-sm"> <i class="mdi mdi-link-variant"></i> link</a>
+                         <a href="{{ $rowban->name }}" class="btn btn-outline-info btn-sm"> <i class="mdi mdi-link-variant"></i> Link</a>
                       @endif
                      </td>
                     
-                    <td> {{ $rowban->status == 1 ? 'แสดง' : 'ไม่แสดง' }}</td>
+                    
+                    <td> 
+                      @if ( $rowban->status == 1)
+                        <label class="badge badge-gradient-success"> <i class="mdi mdi-eye"></i> แสดง </label>                                                                     
+                      @else
+                        <label class="badge badge-gradient-danger"> <i class="mdi mdi-eye-off"></i> ไม่แสดง </label>
+                      @endif
+                    </td>
                     <td> {{ date('d M Y', strtotime($rowban->updated_at)) }} </td>
                     <td>
                       

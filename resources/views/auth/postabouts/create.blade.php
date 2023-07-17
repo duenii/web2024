@@ -87,7 +87,8 @@
 <script>
     $(document).ready(function() {
         $('#summernote').summernote({
-            height: 400
+            height: 400,
+            lang: 'th-TH'
         });
 
     });

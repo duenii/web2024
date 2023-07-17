@@ -15,7 +15,36 @@
         <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body table-responsive">
+                       
+                            {{-- <div class="col-lg-6 mb-2 ">
+                                <form  action="">
+                                    @csrf       
+                                    <div class="input-group col-lg-12">
+                                        <input type="search" name="search" value="{{ $search }}" class="form-control" placeholder="ค้นหาโดยชื่อเรื่อง......." aria-label="Recipient's username" aria-describedby="button-addon2">
+                                        <button class="btn btn-outline-secondary">Search</button>
+                                    </div>
+                                </form>
+
+                            </div>
+                       --}}
+
+
+                       <form class="row g-3">
+                        @csrf  
+                        <div class="col-auto">
+                          <label for="staticEmail2" >ค้นหาข้อมูล : </label>				
+                        </div>
+                        <div class="col-auto">
+                         
+                          <input type="search" name="search" value="{{ $search }}" class="form-control"  placeholder="ค้นหาโดยชื่อเรื่องข่าว........">
+                        </div>
+                        <div class="col-auto">
+                          <button type="submit" class="btn btn-primary mb-3">Search</button>
+                        </div>
+                      </form>
+
+                        
 
                     @if (count($posts) > 0 )
 
@@ -39,9 +68,9 @@
                        
                         <table class="table table-hover mb-2 table-bordered">
                             <thead>
-                                <tr>
+                                <tr class="text-center">
                                     <th>#</th>
-                                    <th>Image</th>
+                                    <th>Cover</th>
                                     <th>Title</th>
                                     <th>Type</th>
                                     <th>Status</th>
@@ -52,14 +81,21 @@
                             <tbody>
                                 @foreach($posts as $rowpost)
                                 <tr>
-                                    <td>{{ $rowpost->id }}</td>
-                                    <td><img src="{{ asset('/images/posts').'/'. $rowpost->gallery->image }}" alt="images"></td>
+                                    <td class="text-center">{{ $loop->iteration }}</td>
+                                    <td class="w-25 text-center"><img src="{{ asset('/storage/images/posts/thumbnail').'/'. $rowpost->gallery->image }}" alt="images" class="w-25 h-25"></td>
                                     {{-- <td>{{ $rowpost->title }}</td> --}}
                                     <td>{{ Str::limit($rowpost->title, 30, '...')  }}</td>
                                     <td>{{ $rowpost->category->name }}</td>
-                                    <td> {{ $rowpost->publish == 1 ? 'แสดง' : 'ไม่แสดง' }}</td>
+                                   
+                                    <td class="text-center"> 
+                                        @if ( $rowpost->publish == 1)
+                                            <label class="badge badge-gradient-success"> <i class="mdi mdi-eye"></i> แสดง </label>                                                                     
+                                        @else
+                                            <label class="badge badge-gradient-danger"> <i class="mdi mdi-eye-off"></i> ไม่แสดง </label>
+                                        @endif
+                                    </td>
                                     <td> {{ date('d M Y', strtotime($rowpost->updated_at)) }} </td>
-                                    <td>
+                                    <td class="text-center">
                                         
                                           <a href="{{ route('posts.edit', $rowpost->id) }}" class="btn btn-warning btn-sm">Edit</a>
                        

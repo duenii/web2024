@@ -1,10 +1,18 @@
 @extends('layouts.home')
 
-@section('tatle', 'Edit Services')
+@section('tatle', 'Create Post News')
 @section('content')
 <div class="main-panel">
     <div class="content-wrapper">
-       
+        {{-- <div class="page-header">
+            <h3 class="page-title"> Edit Form PostNews </h3>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Forms</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Form PostNews</li>
+                </ol>
+            </nav>
+        </div> --}}
         <div class="row">
 
             <div class="col-md-12 grid-margin stretch-card">
@@ -28,33 +36,42 @@
                         @endif
 
 
-                         <form method="post" action="{{ route('services.update', $service->id) }}" class="forms-sample" enctype="multipart/form-data">
+                        <form method="service" action="{{ route('services.update', $service->id) }}" class="forms-sample" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
-                            
                             <div class="form-group row">
                                 <label for="exampleInputUsername2" class="col-sm-3 col-form-label">title</label>
                                 <div class="col-sm-9">
                                     <input type="text" name="title" class="form-control" id="exampleInputUsername2" placeholder="Title" value="{{ $service->title }}" require>
                                 </div>
                             </div>
-
                             <div class="form-group row">
                                 <label for="exampleInputUsername2" class="col-sm-3 col-form-label">link</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="link" class="form-control" id="exampleInputUsername2" placeholder="link" value="{{ $service->link }}" require>
+                                    <input type="text" name="link" class="form-control" id="exampleInputUsername2"
+                                        placeholder="link" value="{{ $service->link }}" require>
                                 </div>
-                            </div>   
-       
+                            </div>
+                           
                             <div class="form-group row">
                                 <label for="exampleTextarea1" class="col-sm-3 col-form-label">content</label>
                                 <div class="col-sm-9">
                                     <textarea class="form-control" name="content" id="summernote" require> {{ $service->content }} </textarea>
                                 </div>
                             </div>
-                            
 
-                            
+                            <div class="form-group row">
+                                <label for="exampleFormControlSelect3" class="col-sm-3 col-form-label"> Published</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control form-control-sm" name="publish" id="exampleFormControlSelect3" require>
+                                        <option selected>เลือกสถานะข่าว</option>
+                                       
+                                        <option @selected( $service->publish == 1) value="1">แสดง</option>
+                                        <option @selected( $service->publish == 2) value="2">ไม่แสดง</option>
+                                        
+                                    </select>
+                                </div>
+                            </div>
 
                             <div class="form-group row text-center">
                                 <div class="col-sm-12">
@@ -85,10 +102,12 @@
 <script>
     $(document).ready(function() {
         $('#summernote').summernote({
-            height: 400
-        });
-
+        height: 400,
+        onImageUpload: function(files, editor, welEditable) {
+          sendFile(files[0], editor, welEditable);
+        }
     });
+});
 </script>
 
 @endsection

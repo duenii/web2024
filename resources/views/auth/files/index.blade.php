@@ -18,6 +18,31 @@
         <div class="card">
           <div class="card">
             <div class="card-body table-responsive">
+				
+				
+					{{-- <form  action="">
+						@csrf       
+						<div class="input-group col-lg-12">
+							<input type="search" name="search" value="{{ $search }}" class="form-control" placeholder="ค้นหาโดยชื่อ......." aria-label="Recipient's username" aria-describedby="button-addon2">
+							<button class="btn btn-outline-secondary ">Search</button>
+						</div>
+					</form> --}}
+
+					<form class="row g-3">
+						@csrf  
+						<div class="col-auto">
+						  <label for="staticEmail2" >ค้นหาข้อมูล : </label>				
+						</div>
+						<div class="col-auto">
+						 
+						  <input type="search" name="search" value="{{ $search }}" class="form-control"  placeholder="ค้นหาโดยชื่อ........">
+						</div>
+						<div class="col-auto">
+						  <button type="submit" class="btn btn-primary mb-3">Search</button>
+						</div>
+					  </form>
+			
+
 				 @if (count($files) > 0 )
 
                 @if($message = Session::get('success'))

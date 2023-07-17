@@ -13,12 +13,22 @@ class SubAboutController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        
-        $subabouts = SubAbout::with('postabouts', 'users')->orderBy('postabouts_id')->paginate(10);
+        $search = $request['search'] ?? "";
+        if($request != ""){
+            $subabouts = SubAbout::where('title', 'like',"%$search%")->paginate(10);
+            //$posts = Post::with('gallery', 'category')->paginate(10);
+
+        }
+        else{
+            $subabouts = SubAbout::with('postabouts', 'users')->orderBy('postabouts_id')->paginate(10);
+        }
+       
         //return $posts;
-        return view('auth.subabouts.index', compact('subabouts'));
+        return view('auth.subabouts.index', compact('subabouts','search'));
+
+
     }
 
     /**
