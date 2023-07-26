@@ -45,12 +45,12 @@
                                     <input type="text" name="title" class="form-control" id="exampleInputUsername2" placeholder="Title" value="{{ $postabout->title }}" require>
                                 </div>
                             </div>
-                            {{-- <div class="form-group row">
+                            <div class="form-group row">
                                 <label for="exampleInputUsername2" class="col-sm-3 col-form-label">title</label>
                                 <div class="col-sm-9">
                                     <input type="text" name="link" class="form-control" id="exampleInputUsername2" placeholder="link" value="{{ $postabout->link }}" require>
                                 </div>
-                            </div>                            --}}
+                            </div>                         
                            
                             <div class="form-group row">
                                 <label for="exampleTextarea1" class="col-sm-3 col-form-label">content</label>

@@ -36,11 +36,10 @@
                         @endif
 
 
-                        <form method="post" action="{{ route('services.store') }}" class="forms-sample"
-                            enctype="multipart/form-data">
+                        <form method="post" action="{{ route('services.store') }}" class="forms-sample" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
-                                <label for="exampleInputUsername2" class="col-sm-3 col-form-label">tatle</label>
+                                <label for="exampleInputUsername2" class="col-sm-3 col-form-label">title</label>
                                 <div class="col-sm-9">
                                     <input type="text" name="title" class="form-control" id="exampleInputUsername2"
                                         placeholder="Title" value="{{ old('title')}}" require>
@@ -48,7 +47,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="exampleInputUsername2" class="col-sm-3 col-form-label">title</label>
+                                <label for="exampleInputUsername2" class="col-sm-3 col-form-label">link</label>
                                 <div class="col-sm-9">
                                     <input type="text" name="link" class="form-control" id="exampleInputUsername2"
                                         placeholder="link" value="{{ old('link')}}" require>
@@ -92,62 +91,10 @@
 <script>
     $(document).ready(function() {
       $('#summernote').summernote({
-        height: 400,
-        onImageUpload: function(files, editor, welEditable) {
-          sendFile(files[0], editor, welEditable);
-        }
+        height: 400
       });
-    
-    //   function sendFile(file, editor, welEditable) {
-    //     data = new FormData();
-    //     data.append("file", file);
-    //     $.ajax({
-    //       data: data,
-    //       type: "POST",
-    //       url: "Your URL POST (php)",
-    //       cache: false,
-    //       contentType: false,
-    //       processData: false,
-    //       success: function(url) {
-    //         editor.insertImage(welEditable, url);
-    //       }
-    //     });
-    //   }
+  
     });
     </script>
-
-{{-- <script>
-    $(document).ready(function() {
-        $('#summernote').summernote({
-
-            height: 400,
-            placeholder: 'enter directions here...',
-            callbacks: {
-            onImageUpload : function(files, editor, welEditable) {
-
-         for(var i = files.length - 1; i >= 0; i--) {
-                 sendFile(files[i], this);
-        }
-    }
-}
-         });
-        });
-
-        function sendFile(file, el) {
-            var form_data = new FormData();
-            form_data.append('file', file);
-            $.ajax({
-                data: form_data,
-                type: "POST",
-                url: 'editor-upload.php',
-                cache: false,
-                contentType: false,
-                processData: false,
-            success: function(url) {
-            $(el).summernote('editor.insertImage', url);
-        }
-            });
-            }
-</script> --}}
 
 @endsection

@@ -64,26 +64,37 @@
                         <table class="table table-hover table-bordered">
                             <thead>
                                 <tr class="text-center">
-                                    <th>#</th>
-                                    <th>Title</th>
-                                    {{-- <th>link</th>                                    --}}
-                                    <th>User</th>
-                                    <th>Update</th>
-                                    <th>Action</th>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Title</th>
+                                    <th class="text-center">submenu</th> 
+                                    <th class="text-center">link</th>                                  
+                                    {{-- <th class="text-center">User</th> --}}
+                                    <th class="text-center">Update</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($postabouts as $rowabout)
                                 <tr >
                                     <td class="text-center">{{ $loop->iteration }}</td>
-                                    <td >{{ $rowabout->title }}</td>                                  
-                                    {{-- <td> 
+                                    <td >{{ $rowabout->title }}</td>   
+                                    <td class="text-secondary">
+                                        @foreach($subabouts as $subpost)
+                                            @if($rowabout->id == $subpost->postabouts_id) 
+                                                <p> - {{$subpost->title }}</p>
+                                            @endif
+                                        @endforeach
+                                       
+
+                                    </td>                               
+                                    <td class="text-center"> 
                                      @if(!$rowabout->link == '')
                                         <a href="{{ $rowabout->link }}" class="btn btn-outline-info btn-sm"> <i class="mdi mdi-link-variant"></i> link</a>
                                      @endif
-                                    </td> --}}
+                                    </td>
                                     
-                                    <td class="text-center">{{ $rowabout->users->name }}</td>
+                                    
+                                    {{-- <td class="text-center">{{ $rowabout->users->name }}</td> --}}
                                     <td class="text-center"> {{ date('d M Y', strtotime($rowabout->updated_at)) }} </td>
                                     <td class="text-center">
                                         <a href="{{ route('postabouts.edit', $rowabout->id) }}" class="btn btn-warning btn-sm ">Edit</a>

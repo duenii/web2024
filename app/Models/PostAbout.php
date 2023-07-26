@@ -18,6 +18,7 @@ class PostAbout extends Model
         return $this->belongsTo(User::class)->select('id','name');
 
     }
+    
  
    
     

@@ -65,23 +65,24 @@
                         <table class="table table-hover mb-2 table-bordered">
                             <thead>
                                 <tr class="text-center">
-                                    <th>#</th>
+                                    <th class="text-center">#</th>
                                     
-                                    <th>Title Submenu</th>
-                                    <th>Main menu</th>
-                                    <th>Link</th>
+                                    <th class="text-center">Title Submenu</th>
+                                    <th class="text-center">Main menu</th>
+                                    <th class="text-center">Link</th>
                                    
-                                    <th>Update</th>
-                                    <th>Action</th>
+                                    <th class="text-center">Update</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                               
                                 @foreach($subabouts as $rowsub)
                                 <tr >
                                     <td class="text-center">{{ $loop->iteration }}</td>
                                     
                                     <td>{{ $rowsub->title }}</td>      
-                                    <td class="text-success text-center"> {{ $rowsub->postabouts->title }}</td>                            
+                                    <td class="text-secondary text-center"> {{ $rowsub->postabouts->title }} </td>                            
                                     <td class="text-center"> 
                                      @if(!$rowsub->link == '')
                                         <a href="{{ $rowsub->link }}" class="btn btn-outline-info btn-sm"> <i class="mdi mdi-link-variant"></i> link</a>

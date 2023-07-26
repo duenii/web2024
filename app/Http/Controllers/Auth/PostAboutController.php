@@ -9,8 +9,6 @@ use App\Models\SubAbout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-use Exception;
-use Illuminate\Http\RedirectResponse;
 
 class PostAboutController extends Controller
 {
@@ -21,17 +19,19 @@ class PostAboutController extends Controller
     {
         $search = $request['search'] ?? "";
         if($request != ""){
+            $subabouts = SubAbout::all();
             $postabouts = PostAbout::where('title', 'like',"%{$search}%")->paginate(10);
             //$posts = Post::with('gallery', 'category')->paginate(10);
 
         }
         else{
+            $subabouts = SubAbout::all();
             $postabouts = PostAbout::with('users')->paginate(10);
         }
 
         // $subabouts = SubAbout::with('postabouts', 'users')->get();
         //return $posts;
-        return view('auth.postabouts.index', compact('postabouts','search'));
+        return view('auth.postabouts.index', compact('postabouts','search','subabouts'));
     }
 
     /**
@@ -53,11 +53,12 @@ class PostAboutController extends Controller
                 'title' => 'required',
             ]);
      
-            $data = $request->input('content');
-     
+            $data = $request->content;
+
             //loading the html data from the summernote editor and select the img tags from it
-            $dom = new \DOMDocument();
-            $dom->loadHtml($data, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);    
+            $dom = new \DOMDocument();            
+             $dom->loadHtml('<?xml encoding="utf-8"?>' . $data);     
+             $dom->encoding = 'utf-8';
             $images = $dom->getElementsByTagName('img');
 
            
@@ -82,7 +83,7 @@ class PostAboutController extends Controller
                 if (sizeof($arr) ==  2) {
                      $original_file_name = $arr[0];
                      //แปลงชื่อไฟล์
-                     $name_new = md5($original_file_name);
+                     //$name_new = md5($original_file_name);
                      $original_file_extension = $arr[1];
                 }
                 else
@@ -97,7 +98,7 @@ class PostAboutController extends Controller
      
                 $data = base64_decode($data);
      
-                $path = $upload_base_directory.$name_new.'.'.$original_file_extension;
+                $path = $upload_base_directory.$original_file_name.'.'.$original_file_extension;
      
                 //uploading the image to an actual file on the server and get the url to it to update the src attribute of images
                 Storage::put($path, $data);
@@ -110,7 +111,8 @@ class PostAboutController extends Controller
             }
      
             //updating the summernote WYSIWYG markdown output.
-            $data = $dom->saveHTML();
+            $data = $dom->saveHTML($dom->documentElement);
+           // dd($data);
 
             PostAbout::create([
                 'title' => $request->title,
@@ -120,9 +122,6 @@ class PostAboutController extends Controller
     
             ]);
 
-     
-             
-            
             
         return to_route('postabouts.index')->with('success', 'Create Data Update successfully');
     }
@@ -137,9 +136,9 @@ class PostAboutController extends Controller
         $cat = Category::all();
         $navmenu = PostAbout::all();
         $menu = PostAbout::where('id',$id)->get();
-        $submenu = SubAbout::all();
+        $subpost = SubAbout::all();
         $subabouts = SubAbout::where('id',$id)->get();
-        return view('website.postabouts.index',compact('subabouts','navmenu','menu','submenu','cat')); 
+        return view('website.postabouts.index',compact('subabouts','navmenu','menu','subpost','cat')); 
        
     }
 
@@ -159,22 +158,21 @@ class PostAboutController extends Controller
 
         $user = auth()->user();
 
-        if(isset($request->content))
-            {
-                echo "ใน IF";
+            $data = $request->content;
 
-                $data = $request->input('content');
-              
-
-                 //loading the html data from the summernote editor and select the img tags from it
+            //loading the html data from the summernote editor and select the img tags from it
             $dom = new \DOMDocument();
-            $dom->loadHtml($data, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);    
+            $dom->loadHtml($data, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD); 
+            $dom->loadHtml('<?xml encoding="utf-8"?>' . $data);     
+            $dom->encoding = 'utf-8';
+   
             $images = $dom->getElementsByTagName('img');
-
+           
            
             foreach($images as $k => $img){
                 //for now src attribute contains image encrypted data in a nonsence string
                 $data = $img->getAttribute('src');
+                
                
                 //getting the original file name that is in data-filename attribute of img
                 $file_name = $img->getAttribute('data-filename');
@@ -202,74 +200,40 @@ class PostAboutController extends Controller
                      $original_file_name = implode("_",array_slice($arr,0,sizeof($arr)-1));
                      $original_file_extension = $arr[sizeof($arr)-1];
                 }
-     
-                list($type, $data) = explode(';', $data);
-                list(, $data)      = explode(',', $data);
-     
-                $data = base64_decode($data);
-     
-                $path = $upload_base_directory.$name_new.'.'.$original_file_extension;
-     
-                //uploading the image to an actual file on the server and get the url to it to update the src attribute of images
-                Storage::put($path, $data);
-     
-                $img->removeAttribute('src');       
-                //you can remove the data-filename attribute here too if you want.
-                $img->setAttribute('src', Storage::url($path));
+                //dd(count(explode('.', $data)));
+                if(count(explode('.', $data))>1){
+                    //dd($data);
+                }else{
+                    list($type, $data) = explode(';', $data);
+                    list(, $data)      = explode(',', $data);
+                    $data = base64_decode($data);
+                    //dd($data);
+                    $path = $upload_base_directory.$name_new.'.'.$original_file_extension;
+        
+                    //uploading the image to an actual file on the server and get the url to it to update the src attribute of images
+                    Storage::put($path, $data);
+        
+                    $img->removeAttribute('src');       
+                    //you can remove the data-filename attribute here too if you want.
+                    $img->setAttribute('src', Storage::url($path));
+                }
                 // data base stuff here :
                 //saving the attachments path in an array
             }
      
             //updating the summernote WYSIWYG markdown output.
-            $data = $dom->saveHTML();
-                
-
-            }
-            else{
-                echo $request->content;
-            }
-
-            dd($data,$postabout->content,$request->content);
-   
- 
-        // $dom = new \DOMDocument();
-
-        // $dom->loadHtml($request->input('content'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-
-        // $imageFile = $dom->getElementsByTagName('img');
-
-       
-
-        // foreach($imageFile as $item => $image){
-
-        //     $data = $image->getAttribute('src');
-
-        //     list($type, $data) = explode(';', $data);
-
-        //     list(, $data)      = explode(',', $data);
-
-        //     $imgeData = base64_decode($data);
-
-        //     $image_name= "/public/upEditor/" . time().$item.'.png';
-
-        //     $path = public_path() . $image_name;
-
-        //     //file_put_contents($path, $imgeData);
-
-        //     Storage::put($path, $imgeData);
-     
-        //         $image->removeAttribute('src');       
-        //         //you can remove the data-filename attribute here too if you want.
-        //         $image->setAttribute('src', Storage::url($path));
-
-
-        //         }
-        //         $data = $dom->saveHTML();
+            $data = $dom->saveHTML(); 
   
-       // $postabout->update($request->all());
+        $postabout->update([
+            'title' => $request->title,
+            'link' => $request->link,
+            'content' => $data,             
+            'users_id' => $user->id
+
+        ]);
          
        
-       // return to_route('postabouts.index')->with('warning', 'Edit Data Update successfully');
+        return to_route('postabouts.index')->with('warning', 'Edit Data Update successfully');
     }
 
     /**

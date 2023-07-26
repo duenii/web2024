@@ -60,7 +60,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            {{-- <div class="form-group row">
                                 <label for="exampleFormControlSelect3" class="col-sm-3 col-form-label"> Published</label>
                                 <div class="col-sm-9">
                                     <select class="form-control form-control-sm" name="publish" id="exampleFormControlSelect3" require>
@@ -71,7 +71,7 @@
                                         
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="form-group row text-center">
                                 <div class="col-sm-12">
@@ -102,10 +102,7 @@
 <script>
     $(document).ready(function() {
         $('#summernote').summernote({
-        height: 400,
-        onImageUpload: function(files, editor, welEditable) {
-          sendFile(files[0], editor, welEditable);
-        }
+        height: 400
     });
 });
 </script>

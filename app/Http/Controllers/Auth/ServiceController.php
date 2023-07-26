@@ -14,10 +14,20 @@ class ServiceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $services = Service::with('users')->paginate(8);
-        return view('auth.services.index', compact('services'));
+        $search = $request['search'] ?? "";
+        if($request != ""){
+            $services = Service::where('title', 'like',"%{$search}%")->paginate(10);
+            
+            //$posts = Post::with('gallery', 'category')->paginate(10);
+
+        }
+        else{
+            $services = Service::with('users')->paginate(10);
+        }
+      //  $services = Service::with('users')->paginate(8);
+        return view('auth.services.index', compact('services','search'));
     }
 
     /**
@@ -35,82 +45,75 @@ class ServiceController extends Controller
     {
         $user = auth()->user();
 
-      
-        // *** เขียนแบบ php 
-
-        // if ($_FILES['file']['name']) {
-        //     if (!$_FILES['file']['error']) {
-        //       $name = md5(rand(100, 200));
-        //       $ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
-        //       $filename = $name.
-        //       '.'.$ext;
-        //       $destination = '/assets/images/'.$filename; //change this directory
-        //       $location = $_FILES["file"]["tmp_name"];
-        //       move_uploaded_file($location, $destination);
-        //       echo 'images/'.$filename; //change this URL
-        //     } else {
-        //       echo $message = 'Ooops!  Your upload triggered the following error:  '.$_FILES['file']['error'];
-        //     }
-        //   }
- 
-
         $this->validate($request, [
             'title' => 'required',
         ]);
  
-        $data = $request->input('content');
- 
-        $dom = new \DOMDocument();
+        $data = $request->content;
 
-        $dom->loadHtml($data, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            //loading the html data from the summernote editor and select the img tags from it
+            $dom = new \DOMDocument();            
+             $dom->loadHtml('<?xml encoding="utf-8"?>' . $data);     
+             $dom->encoding = 'utf-8';
+            $images = $dom->getElementsByTagName('img');
 
-        $imageFile = $dom->getElementsByTagName('img');
-
-       
-
-        foreach($imageFile as $item => $image){
-
-            $data = $image->getAttribute('src');
-             $data = $image->getAttribute('src');
-
-
-            list($type, $data) = explode(';', $data);
-
-            list(, $data)      = explode(',', $data);
-
-            $imgeData = base64_decode($data);
-
-            $image_name= "/upEditor/" . time().$item.'.png';
-
-            $path = public_path() . $image_name;
-
-            //file_put_contents($path, $imgeData);
-
-            Storage::put($path, $imgeData);
+           
+            foreach($images as $k => $img){
+                //for now src attribute contains image encrypted data in a nonsence string
+                $data = $img->getAttribute('src');
+               
+                //getting the original file name that is in data-filename attribute of img
+                $file_name = $img->getAttribute('data-filename');
+    
+                //extracting the original file name and extension
+                
+                $arr = explode('.', $file_name);
+                $upload_base_directory = 'public/upEditor/';
+    
+                 ///** change name file upload */        
      
-                $image->removeAttribute('src');       
+               // $original_file_name=$k.time();
+                $original_file_name = time().rand(000,999).$k;
+                $original_file_extension='png';
+     
+                if (sizeof($arr) ==  2) {
+                     $original_file_name = $arr[0];
+                     //แปลงชื่อไฟล์
+                     //$name_new = md5($original_file_name);
+                     $original_file_extension = $arr[1];
+                }
+                else
+                {
+                     //the file name contains extra . in itself
+                     $original_file_name = implode("_",array_slice($arr,0,sizeof($arr)-1));
+                     $original_file_extension = $arr[sizeof($arr)-1];
+                }
+     
+                list($type, $data) = explode(';', $data);
+                list(, $data)      = explode(',', $data);
+     
+                $data = base64_decode($data);
+     
+                $path = $upload_base_directory.$original_file_name.'.'.$original_file_extension;
+     
+                //uploading the image to an actual file on the server and get the url to it to update the src attribute of images
+                Storage::put($path, $data);
+     
+                $img->removeAttribute('src');       
                 //you can remove the data-filename attribute here too if you want.
-                $image->setAttribute('src', Storage::url($path));
+                $img->setAttribute('src', Storage::url($path));
+                // data base stuff here :
+                //saving the attachments path in an array
+            }
+     
+            //updating the summernote WYSIWYG markdown output.
+            $data = $dom->saveHTML($dom->documentElement);
+           // dd($data);
 
-                 
-
-            // $image->removeAttribute('src');
-
-            // $image->setAttribute('src', $image_name);
-
-        }
-
-       
-
-       
- 
-        //updating the summernote WYSIWYG markdown output.
-        $data = $dom->saveHTML();
-
-          Service::create([            
+            Service::create([            
               'title' => $request->title,
               'link' => $request->link,
-             'content' => $data,             
+              'content' => $data,             
               'users_id' => $user->id
  
           ]);
@@ -137,7 +140,7 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        $services = Service::all();
+       // $services = Service::all();
 
         return view('auth.services.edit', compact('service'));
     }
@@ -146,17 +149,24 @@ class ServiceController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Service $Service)
-    {
-        $data = $request->input('content');
- 
+    {        
+        $user = auth()->user();
+
+        $data = $request->content;
+
         //loading the html data from the summernote editor and select the img tags from it
-        $dom = new \DomDocument();
-        $dom->loadHtml($data, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);    
+        $dom = new \DOMDocument();
+        $dom->loadHtml($data, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD); 
+        $dom->loadHtml('<?xml encoding="utf-8"?>' . $data);     
+        $dom->encoding = 'utf-8';
+
         $images = $dom->getElementsByTagName('img');
-        
+       
+       
         foreach($images as $k => $img){
             //for now src attribute contains image encrypted data in a nonsence string
             $data = $img->getAttribute('src');
+            
            
             //getting the original file name that is in data-filename attribute of img
             $file_name = $img->getAttribute('data-filename');
@@ -169,43 +179,57 @@ class ServiceController extends Controller
              ///** change name file upload */        
  
            // $original_file_name=$k.time();
-            $original_file_name = time();
+            $original_file_name = time().$k.'png';
             $original_file_extension='png';
  
-            if (sizeof($arr) ==  2) {
+           if (sizeof($arr) ==  2) {
                  $original_file_name = $arr[0];
+                 //แปลงชื่อไฟล์
+                 $name_new = md5($original_file_name);
                  $original_file_extension = $arr[1];
-            }
+           }
             else
             {
                  //the file name contains extra . in itself
                  $original_file_name = implode("_",array_slice($arr,0,sizeof($arr)-1));
                  $original_file_extension = $arr[sizeof($arr)-1];
             }
- 
-            list($type, $data) = explode(';', $data);
-            list(, $data)      = explode(',', $data);
- 
-            $data = base64_decode($data);
- 
-            $path = $upload_base_directory.$original_file_name.'.'.$original_file_extension;
- 
-            //uploading the image to an actual file on the server and get the url to it to update the src attribute of images
-            Storage::put($path, $data);
- 
-            $img->removeAttribute('src');       
-            //you can remove the data-filename attribute here too if you want.
-            $img->setAttribute('src', Storage::url($path));
+            //dd(count(explode('.', $data)));
+            if(count(explode('.', $data))>1){
+                //dd($data);
+            }else{
+                list($type, $data) = explode(';', $data);
+                list(, $data)      = explode(',', $data);
+                $data = base64_decode($data);
+                //dd($data);
+                $path = $upload_base_directory.$name_new.'.'.$original_file_extension;
+    
+                //uploading the image to an actual file on the server and get the url to it to update the src attribute of images
+                Storage::put($path, $data);
+    
+                $img->removeAttribute('src');       
+                //you can remove the data-filename attribute here too if you want.
+                $img->setAttribute('src', Storage::url($path));
+            }
             // data base stuff here :
             //saving the attachments path in an array
         }
  
         //updating the summernote WYSIWYG markdown output.
-        $data = $dom->saveHTML();
+        $data = $dom->saveHTML(); 
+        //dd($data);
 
-        $Service->update($request->all());
+
+        $Service->update([
+        'title' => $request->title,
+        'link' => $request->link,
+        'content' => $data,             
+        'users_id' => $user->id
+
+    ]);
+     
         // dd($request->all());
-        return to_route('auth.services.index')->with('warning', 'Edit Data Update successfully');
+        return to_route('services.index')->with('warning', 'Edit Data Update successfully');
     }
 
     /**

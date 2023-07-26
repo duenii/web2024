@@ -68,14 +68,14 @@
                        
                         <table class="table table-hover mb-2 table-bordered">
                             <thead>
-                                <tr class="text-center">
-                                    <th>#</th>
-                                    <th>Cover</th>
-                                    <th>Title</th>
-                                    <th>Type</th>
-                                    <th>Status</th>
-                                    <th>Update</th>
-                                    <th>Action</th>
+                                <tr >
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Cover</th>
+                                    <th class="text-center">Title</th>
+                                    <th class="text-center"> Type</th>
+                                    <th class="text-center">Status</th>
+                                    <th class="text-center">Update</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -85,8 +85,7 @@
                                     <td class="w-25 text-center"><img src="{{ asset('/storage/images/posts/thumbnail').'/'. $rowpost->gallery->image }}" alt="images" class="w-25 h-25"></td>
                                     {{-- <td>{{ $rowpost->title }}</td> --}}
                                     <td>{{ Str::limit($rowpost->title, 30, '...')  }}</td>
-                                    <td>{{ $rowpost->category->name }}</td>
-                                   
+                                    <td>{{ $rowpost->category->name }}</td>                                 
                                     <td class="text-center"> 
                                         @if ( $rowpost->publish == 1)
                                             <label class="badge badge-gradient-success"> <i class="mdi mdi-eye"></i> แสดง </label>                                                                     

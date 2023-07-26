@@ -40,6 +40,22 @@
                             @csrf
                             @method('PUT')
                             <div class="form-group row">
+                                <label for="exampleFormControlSelect3" class="col-sm-3 col-form-label">Main Menu</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control form-control-sm" name="postabouts" id="exampleFormControlSelect3" require>
+                                        {{-- <option selected>เลือกเมนูหลัก</option> --}}
+                                        @if (count($postabouts) > 0)
+                                        @foreach($postabouts as $about_row)
+                                        <option @selected( old('postabouts')== $about_row->id ) value="{{ $about_row->id }}">{{ $about_row->title }}</option>
+
+                                        @endforeach
+
+                                        @endif
+                                    </select>
+                                    
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="exampleInputUsername2" class="col-sm-3 col-form-label">title</label>
                                 <div class="col-sm-9">
                                     <input type="text" name="title" class="form-control" id="exampleInputUsername2" placeholder="Title" value="{{ $subabout->title }}" require>

@@ -39,9 +39,11 @@
 	</section>
 
 	@foreach ($cat as $cat_row)
-	<div class="row">
-		<div class="col-lg-12 col-md-12 col-sm-12 pt-2 bg-boxhr">
-			<h5 class="py-3 px-5 text-light">{{ $cat_row->name }}</h5>
+	<div class="row px-5">
+		
+		<div class="col-lg-12 col-md-12 col-sm-12 pt-2 ">
+			<h5 class="pt-3 ">{{ $cat_row->name }}</h5>
+			<div class="divider mb-2"></div>
 		</div>
 	</div>
 	<div class="row bg-fff px-5">
@@ -83,7 +85,7 @@
 	</div>
 	@endforeach
 
-	<div class="row bg-fff px-5">
+	<div class="row bg-fff px-5 pb-5">
 		@foreach ($services as $rowser)
 		@if ($rowser->id == 1)
 		@php
@@ -127,7 +129,7 @@
 		@endphp
 		@endif
 
-		<div class=" col-lg-3 col-md-6 col-sm-6 px-2 ">
+		{{-- <div class=" col-lg-2 col-md-6 col-sm-6 px-2 ">
 			@if ($rowser->link == '')
 			
 				<div class="service-item card mb-4 bg-box ">
@@ -152,8 +154,40 @@
 			
 
 			@endif
-		</div>
-		@endforeach
+		</div> --}}
+		
+			<div class="col-2">
+				@if ($rowser->link == '')
+			  <div class="card h-100">
+				<div class="rounded mx-auto d-block mt-5" > <i class="{{ $class_ico }} text-lg "></i></div>
+				<div class="card-body">
+				  <h5 class="card-title">{{ $rowser->title }}</h5>
+				  <p class="card-text">รายละเอียด</p>
+				</div>
+				{{-- <div class="card-footer">
+				  <small class="text-muted">Last updated 3 mins ago</small>
+				</div> --}}
+			  </div>
+			  @else
+			  <div class="card h-100">
+				<div class="rounded mx-auto d-block mt-5" > <i class="{{ $class_ico }} text-lg "></i></div>
+				<div class="card-body">
+					<h5 class="card-title">{{ $rowser->title }}</h5>
+					<p class="card-text">รายละเอียด</p>
+				</div>
+				{{-- <div class="card-footer">
+				  <small class="text-muted">Last updated 3 mins ago</small>
+				</div> --}}
+			  </div>
+			  @endif
+			</div>
+		
+		 
+
+		
+
+		
+		  @endforeach
 
 	</div>
 

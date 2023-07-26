@@ -1,4 +1,4 @@
-import $ from 'jquery'
+//import $ from '/jquery'
 
 /**
  * --------------------------------------------------------------------------
@@ -158,4 +158,4 @@ const Util = (($) => {
   return Util
 })($)
 
-export default Util
+//export default Util

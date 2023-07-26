@@ -54,8 +54,8 @@ class FilesController extends Controller
 			  
 			//	$request->file('file')->store('files', $fileName);
              
-			     $imgePath = $file->move(public_path('files'), $fileName);
-              //  $file->move($imgePath, $fileName);
+			    $imgePath = $file->move(public_path('files'), $fileName);
+            
     
         		
  				//dd($fileName);

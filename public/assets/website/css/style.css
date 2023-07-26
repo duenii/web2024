@@ -30,7 +30,7 @@ body {
     
 }
 .bg-contant{
-  background-image: url("../images/web/bodyweb.jpg");
+  /* background-image: url("../images/web/bodyweb.jpg"); */
   background-size: cover;
   position: relative;
   background-position: top;
@@ -86,7 +86,7 @@ p {
 
 .bg-navmenu{
  /*add style*/
- background: #4c219f !important;
+ background: #856605 !important;
  padding: 10px !important;
 }
 .container-fluid{
@@ -310,7 +310,8 @@ input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, inp
 }
 
 .text-lg {
-  font-size: 3.75rem;
+  font-size: 4.75rem;
+  color: #f8b279;
 }
 
 .no-spacing {
@@ -379,9 +380,9 @@ a:focus {
   color: #223a66;
 }
 
-.text-lg {
+/* .text-lg {
   font-size: 50px;
-}
+} */
 
 .gray-bg {
   background: #f4f9fc;
