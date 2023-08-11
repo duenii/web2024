@@ -64,9 +64,10 @@ class SubAboutController extends Controller
 
        //loading the html data from the summernote editor and select the img tags from it
        $dom = new \DOMDocument();            
-        $dom->loadHtml('<?xml encoding="utf-8"?>' . $data);     
-        $dom->encoding = 'utf-8';
-       $images = $dom->getElementsByTagName('img');
+          
+         $dom->loadHtml(mb_convert_encoding($data, 'HTML-ENTITIES', 'UTF-8')); 
+       // $dom->encoding = 'utf-8';
+         $images = $dom->getElementsByTagName('img');
 
       
        foreach($images as $k => $img){
@@ -118,8 +119,12 @@ class SubAboutController extends Controller
        }
 
        //updating the summernote WYSIWYG markdown output.
-       $data = $dom->saveHTML($dom->documentElement);
+       $data = $dom->saveHTML();
+       unset($dom);
       // dd($data);
+
+      PostAbout::where('id',  $request->postabouts)->update(['status' => 1]);
+
 
         SubAbout::create([
             'postabouts_id' => $request->postabouts,
@@ -165,13 +170,15 @@ class SubAboutController extends Controller
     {
         $user = auth()->user();
 
-        $data = $request->content;
+        if($request->content)
+
+          $data = $request->content;
 
         //loading the html data from the summernote editor and select the img tags from it
         $dom = new \DOMDocument();
-        $dom->loadHtml($data, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD); 
-        $dom->loadHtml('<?xml encoding="utf-8"?>' . $data);     
-        $dom->encoding = 'utf-8';
+        //$dom->loadHtml($data, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD); 
+        $dom->loadHtml(mb_convert_encoding($data, 'HTML-ENTITIES', 'UTF-8')); 
+        //$dom->encoding = 'utf-8';
 
         $images = $dom->getElementsByTagName('img');
        
@@ -230,6 +237,7 @@ class SubAboutController extends Controller
  
         //updating the summernote WYSIWYG markdown output.
         $data = $dom->saveHTML(); 
+        unset($dom);
 
         $subabout->update([
             'postabouts_id' => $request->postabouts,

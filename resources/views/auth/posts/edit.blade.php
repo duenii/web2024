@@ -48,10 +48,10 @@
                             <div class="form-group row">
                                 <label for="exampleFormControlSelect3" class="col-sm-3 col-form-label">Type postnews</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control form-control-sm" name="category_id" id="exampleFormControlSelect3" require>
+                                    <select class="form-control form-control-sm" name="category" id="exampleFormControlSelect3" require>
                                         <option selected>เลือกประเภทข่าว</option>
-                                        @if (count($category) > 0)
-                                        @foreach($category as $cat_row)
+                                        @if (count($cat) > 0)
+                                        @foreach($cat as $cat_row)
                                         <option @selected( $post->category_id == $cat_row->id ) value="{{ $cat_row->id }}">{{ $cat_row->name }}</option>
 
                                         @endforeach

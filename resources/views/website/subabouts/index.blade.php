@@ -23,7 +23,7 @@
                       <span class="text-black text-capitalize mr-3"><i class="icofont-calendar mr-1"></i> {{ date('d M Y'), strtotime($rowsub->created_at)  }} </span>
                     </div>
     
-                    <p class="mb-4">{{ $rowsub->content }}</p>
+                    <p class="mb-4">{!! $rowsub->content !!}</p>
                     
     
                  

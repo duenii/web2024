@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('icofont');
             $table->text('link')->default(NULL);
             $table->longText('content')->default(NULL);
             $table->foreignId('users_id');

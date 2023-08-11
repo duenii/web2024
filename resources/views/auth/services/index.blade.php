@@ -16,31 +16,7 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body table-responsive">
-                        {{-- <div class="col-lg-6 mb-2 ">
-                            <form  action="">
-                                @csrf       
-                                <div class="input-group col-lg-12">
-                                    <input type="search" name="search" value="{{ $search }}" class="form-control" placeholder="ค้นหาโดยชื่อบริการ......." aria-label="Recipient's username" aria-describedby="button-addon2">
-                                    <button class="btn btn-outline-secondary">Search</button>
-                                </div>
-                            </form>
-                        </div> --}}
-
-                        {{-- <form class="row g-3">
-                            @csrf  
-                            <div class="col-auto">
-                              <label for="staticEmail2" >ค้นหาข้อมูล : </label>				
-                            </div>
-                            <div class="col-auto">
-                             
-                              <input type="search" name="search" value="{{ $search }}" class="form-control"  placeholder="ค้นหาโดยชื่อ........">
-                            </div>
-                            <div class="col-auto">
-                              <button type="submit" class="btn btn-primary mb-3">Search</button>
-                            </div>
-                          </form> --}}
-
-
+                
 
                     @if (count($services) > 0 )
 
@@ -65,6 +41,7 @@
                             <thead>
                                 <tr class="text-center">
                                     <th>#</th>
+                                    <th>icon</th> 
                                     <th>Title</th>                                
                                     <th>Link</th>
                                     <th>Update</th>
@@ -75,6 +52,7 @@
                                 @foreach($services as $rowservice)
                                 <tr>
                                     <td class="text-center">{{ $loop->iteration }}</td>
+                                    <td class="text-center"><i class="{{$rowservice->icofont}}"></i> {{$rowservice->icofont}} </td>
                                     <td>{{ $rowservice->title }}</td>
                                     <td class="text-center"> 
                                         @if(!$rowservice->link == '')
@@ -100,7 +78,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                   <h5>ลบข้อมูล</h5><br>
-                                                  <p>{{ $rowservice->title }}</p>
+                                                  <p>{{ $rowservice->id }}</p>
                                                   
                                                 </div>
                                                 <div class="modal-footer">

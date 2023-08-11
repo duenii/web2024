@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\BannerController;
 use App\Http\Controllers\Auth\CkeditorController;
 use App\Http\Controllers\Auth\DashboardController;
 use App\Http\Controllers\Auth\FilesController;
+use App\Http\Controllers\Auth\NewsLetterController;
 use App\Http\Controllers\Auth\PostAboutController;
 use App\Http\Controllers\Auth\ServiceController;
 use App\Http\Controllers\Auth\SubAboutController;
@@ -38,7 +39,7 @@ Route::get('/postabouts/{id}', [PostAboutController::class, 'show'])->name('webs
 Route::get('/subabouts/{id}', [SubAboutController::class, 'show'])->name('website.subabouts.show');
 Route::get('/services/{id}', [ServiceController::class, 'show'])->name('website.services.show');
 Route::get('/postsall/{id}', [PostController::class, 'showall'])->name('website.postsall.show');
-
+Route::get('/newsletter', [NewsLetterController::class, 'showtotal'])->name('website.newsletter.show');
 
 Route::get('/post', function () {
     return view('website.posts.index');
@@ -62,10 +63,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('/auth/subabouts', SubAboutController::class);
     Route::resource('/auth/services', ServiceController::class);
     Route::resource('/auth/files', FilesController::class);
+    Route::resource('/auth/newsletter', NewsLetterController::class);
 
-    Route::get('/auth/editor', [CkeditorController::class, 'index'])->name('editor.index');
-    Route::post('/auth/editor', [CkeditorController::class, 'store'])->name('editor.store');
-    Route::post('/auth/editor/imge_upload', [CkeditorController::class, 'upload'])->name('editor.upload');
+    // Route::get('/auth/editor', [CkeditorController::class, 'index'])->name('editor.index');
+    // Route::post('/auth/editor', [CkeditorController::class, 'store'])->name('editor.store');
+    // Route::post('/auth/editor/imge_upload', [CkeditorController::class, 'upload'])->name('editor.upload');
 
  
 

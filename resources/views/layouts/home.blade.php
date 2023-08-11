@@ -142,6 +142,13 @@
           </li>
 
           <li class="nav-item">
+            <a class="nav-link" href="{{ url('/auth/newsletter' )}}">
+              <span class="menu-title">จดหมายข่าว</span>
+              <i class="mdi mdi-file-presentation-box menu-icon"></i>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a class="nav-link" href="{{ url('/auth/files' )}}">
               <span class="menu-title">อัพโหลดไฟล์</span>
               <i class="mdi mdi-folder-upload menu-icon"></i>

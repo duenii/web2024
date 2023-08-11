@@ -51,67 +51,69 @@ class ServiceController extends Controller
  
         $data = $request->content;
 
-            //loading the html data from the summernote editor and select the img tags from it
-            $dom = new \DOMDocument();            
-             $dom->loadHtml('<?xml encoding="utf-8"?>' . $data);     
-             $dom->encoding = 'utf-8';
-            $images = $dom->getElementsByTagName('img');
+       //loading the html data from the summernote editor and select the img tags from it
+       $dom = new \DOMDocument();            
+          
+       $dom->loadHtml(mb_convert_encoding($data, 'HTML-ENTITIES', 'UTF-8')); 
+     // $dom->encoding = 'utf-8';
+       $images = $dom->getElementsByTagName('img');
 
-           
-            foreach($images as $k => $img){
-                //for now src attribute contains image encrypted data in a nonsence string
-                $data = $img->getAttribute('src');
-               
-                //getting the original file name that is in data-filename attribute of img
-                $file_name = $img->getAttribute('data-filename');
     
-                //extracting the original file name and extension
-                
-                $arr = explode('.', $file_name);
-                $upload_base_directory = 'public/upEditor/';
-    
-                 ///** change name file upload */        
-     
-               // $original_file_name=$k.time();
-                $original_file_name = time().rand(000,999).$k;
-                $original_file_extension='png';
-     
-                if (sizeof($arr) ==  2) {
-                     $original_file_name = $arr[0];
-                     //แปลงชื่อไฟล์
-                     //$name_new = md5($original_file_name);
-                     $original_file_extension = $arr[1];
-                }
-                else
-                {
-                     //the file name contains extra . in itself
-                     $original_file_name = implode("_",array_slice($arr,0,sizeof($arr)-1));
-                     $original_file_extension = $arr[sizeof($arr)-1];
-                }
-     
-                list($type, $data) = explode(';', $data);
-                list(, $data)      = explode(',', $data);
-     
-                $data = base64_decode($data);
-     
-                $path = $upload_base_directory.$original_file_name.'.'.$original_file_extension;
-     
-                //uploading the image to an actual file on the server and get the url to it to update the src attribute of images
-                Storage::put($path, $data);
-     
-                $img->removeAttribute('src');       
-                //you can remove the data-filename attribute here too if you want.
-                $img->setAttribute('src', Storage::url($path));
-                // data base stuff here :
-                //saving the attachments path in an array
-            }
-     
-            //updating the summernote WYSIWYG markdown output.
-            $data = $dom->saveHTML($dom->documentElement);
-           // dd($data);
+     foreach($images as $k => $img){
+         //for now src attribute contains image encrypted data in a nonsence string
+         $data = $img->getAttribute('src');
+        
+         //getting the original file name that is in data-filename attribute of img
+         $file_name = $img->getAttribute('data-filename');
+
+         //extracting the original file name and extension
+         
+         $arr = explode('.', $file_name);
+         $upload_base_directory = 'public/upEditor/';
+
+          ///** change name file upload */        
+
+        // $original_file_name=$k.time();
+         $original_file_name = time().rand(000,999).$k;
+         $original_file_extension='png';
+
+         if (sizeof($arr) ==  2) {
+              $original_file_name = $arr[0];
+              //แปลงชื่อไฟล์
+              //$name_new = md5($original_file_name);
+              $original_file_extension = $arr[1];
+         }
+         else
+         {
+              //the file name contains extra . in itself
+              $original_file_name = implode("_",array_slice($arr,0,sizeof($arr)-1));
+              $original_file_extension = $arr[sizeof($arr)-1];
+         }
+
+         list($type, $data) = explode(';', $data);
+         list(, $data)      = explode(',', $data);
+
+         $data = base64_decode($data);
+
+         $path = $upload_base_directory.$original_file_name.'.'.$original_file_extension;
+
+         //uploading the image to an actual file on the server and get the url to it to update the src attribute of images
+         Storage::put($path, $data);
+
+         $img->removeAttribute('src');       
+         //you can remove the data-filename attribute here too if you want.
+         $img->setAttribute('src', Storage::url($path));
+         // data base stuff here :
+         //saving the attachments path in an array
+     }
+
+     //updating the summernote WYSIWYG markdown output.
+     $data = $dom->saveHTML();
+     unset($dom);
 
             Service::create([            
               'title' => $request->title,
+              'icofont' => $request->icofont,
               'link' => $request->link,
               'content' => $data,             
               'users_id' => $user->id
@@ -148,82 +150,87 @@ class ServiceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Service $Service)
+    public function update(Request $request, Service $service)
     {        
         $user = auth()->user();
 
-        $data = $request->content;
+        if($request->content){
+            $data = $request->content;
 
-        //loading the html data from the summernote editor and select the img tags from it
-        $dom = new \DOMDocument();
-        $dom->loadHtml($data, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD); 
-        $dom->loadHtml('<?xml encoding="utf-8"?>' . $data);     
-        $dom->encoding = 'utf-8';
-
-        $images = $dom->getElementsByTagName('img');
-       
-       
-        foreach($images as $k => $img){
-            //for now src attribute contains image encrypted data in a nonsence string
-            $data = $img->getAttribute('src');
-            
+            //loading the html data from the summernote editor and select the img tags from it
+            $dom = new \DOMDocument();
+            //$dom->loadHtml($data, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD); 
+            $dom->loadHtml(mb_convert_encoding($data, 'HTML-ENTITIES', 'UTF-8')); 
+            //$dom->encoding = 'utf-8';
+      
+            $images = $dom->getElementsByTagName('img');
            
-            //getting the original file name that is in data-filename attribute of img
-            $file_name = $img->getAttribute('data-filename');
-
-            //extracting the original file name and extension
-            
-            $arr = explode('.', $file_name);
-            $upload_base_directory = 'public/upEditor/';
-
-             ///** change name file upload */        
- 
-           // $original_file_name=$k.time();
-            $original_file_name = time().$k.'png';
-            $original_file_extension='png';
- 
-           if (sizeof($arr) ==  2) {
-                 $original_file_name = $arr[0];
-                 //แปลงชื่อไฟล์
-                 $name_new = md5($original_file_name);
-                 $original_file_extension = $arr[1];
-           }
-            else
-            {
-                 //the file name contains extra . in itself
-                 $original_file_name = implode("_",array_slice($arr,0,sizeof($arr)-1));
-                 $original_file_extension = $arr[sizeof($arr)-1];
+           
+            foreach($images as $k => $img){
+                //for now src attribute contains image encrypted data in a nonsence string
+                $data = $img->getAttribute('src');
+                
+               
+                //getting the original file name that is in data-filename attribute of img
+                $file_name = $img->getAttribute('data-filename');
+      
+                //extracting the original file name and extension
+                
+                $arr = explode('.', $file_name);
+                $upload_base_directory = 'public/upEditor/';
+      
+                 ///** change name file upload */        
+      
+               // $original_file_name=$k.time();
+                $original_file_name = time().$k.'png';
+                $original_file_extension='png';
+      
+               if (sizeof($arr) ==  2) {
+                     $original_file_name = $arr[0];
+                     //แปลงชื่อไฟล์
+                     $name_new = md5($original_file_name);
+                     $original_file_extension = $arr[1];
+               }
+                else
+                {
+                     //the file name contains extra . in itself
+                     $original_file_name = implode("_",array_slice($arr,0,sizeof($arr)-1));
+                     $original_file_extension = $arr[sizeof($arr)-1];
+                }
+                //dd(count(explode('.', $data)));
+                if(count(explode('.', $data))>1){
+                    //dd($data);
+                }else{
+                    list($type, $data) = explode(';', $data);
+                    list(, $data)      = explode(',', $data);
+                    $data = base64_decode($data);
+                    //dd($data);
+                    $path = $upload_base_directory.$name_new.'.'.$original_file_extension;
+        
+                    //uploading the image to an actual file on the server and get the url to it to update the src attribute of images
+                    Storage::put($path, $data);
+        
+                    $img->removeAttribute('src');       
+                    //you can remove the data-filename attribute here too if you want.
+                    $img->setAttribute('src', Storage::url($path));
+                }
+                // data base stuff here :
+                //saving the attachments path in an array
             }
-            //dd(count(explode('.', $data)));
-            if(count(explode('.', $data))>1){
-                //dd($data);
-            }else{
-                list($type, $data) = explode(';', $data);
-                list(, $data)      = explode(',', $data);
-                $data = base64_decode($data);
-                //dd($data);
-                $path = $upload_base_directory.$name_new.'.'.$original_file_extension;
-    
-                //uploading the image to an actual file on the server and get the url to it to update the src attribute of images
-                Storage::put($path, $data);
-    
-                $img->removeAttribute('src');       
-                //you can remove the data-filename attribute here too if you want.
-                $img->setAttribute('src', Storage::url($path));
-            }
-            // data base stuff here :
-            //saving the attachments path in an array
+      
+            //updating the summernote WYSIWYG markdown output.
+            $data = $dom->saveHTML(); 
+            unset($dom);
+
+            Service::where('id',$service->id)->update(['content' => $data]);
+
+
         }
- 
-        //updating the summernote WYSIWYG markdown output.
-        $data = $dom->saveHTML(); 
-        //dd($data);
-
-
-        $Service->update([
+       
+        $service->update([
         'title' => $request->title,
-        'link' => $request->link,
-        'content' => $data,             
+        'icofont' => $request->icofont,
+        'link' => $request->link,         
         'users_id' => $user->id
 
     ]);
@@ -235,10 +242,11 @@ class ServiceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Service $Service)
+    public function destroy(Service $service)
     {
-         $Service->delete();
+        //dd($services);
+         $service->delete();
 
-        return to_route('services.index')->with('success', 'posts Data deleted successfully');
+        return to_route('services.index')->with('danger', 'Service Data Delete successfully');
     }
 }

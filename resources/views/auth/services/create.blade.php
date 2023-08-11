@@ -47,6 +47,16 @@
                             </div>
 
                             <div class="form-group row">
+                                <label for="exampleInputUsername2" class="col-sm-3 col-form-label">icon  </label>
+                                <div class="col-sm-9">
+                                    <p class="card-description"> <a href="https://icofont.com/" target="_blank" class="text-info">คลิกเลือกไอคอน</a> ใส่เฉพาะชื่อคลาสของไอคอน เช่น class="icofont-pictures" คัดลอกเฉพาะ <code>icofont-pictures</code></p>
+                                    <input type="text" name="icofont" class="form-control" id="exampleInputUsername2"
+                                        placeholder="class name icon " value="{{ old('icofont')}}" require>
+                                </div>
+                                
+                            </div>
+
+                            <div class="form-group row">
                                 <label for="exampleInputUsername2" class="col-sm-3 col-form-label">link</label>
                                 <div class="col-sm-9">
                                     <input type="text" name="link" class="form-control" id="exampleInputUsername2"
@@ -90,11 +100,11 @@
 
 <script>
     $(document).ready(function() {
-      $('#summernote').summernote({
-        height: 400
-      });
-  
+        $('#summernote').summernote({
+            height: 400
+        });
+
     });
-    </script>
+</script>
 
 @endsection

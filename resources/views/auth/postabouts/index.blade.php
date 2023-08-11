@@ -83,6 +83,8 @@
                                             @if($rowabout->id == $subpost->postabouts_id) 
                                                 <p> - {{$subpost->title }}</p>
                                             @endif
+
+                                           
                                         @endforeach
                                        
 

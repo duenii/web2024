@@ -1,6 +1,6 @@
 @extends('layouts.home')
 
-@section('tatle', 'Create Post News')
+@section('tatle', 'Create services')
 @section('content')
 <div class="main-panel">
     <div class="content-wrapper">
@@ -36,7 +36,7 @@
                         @endif
 
 
-                        <form method="service" action="{{ route('services.update', $service->id) }}" class="forms-sample" enctype="multipart/form-data">
+                        <form action="{{ route('services.update', $service->id) }}" method="POST" class="forms-sample" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="form-group row">
@@ -44,6 +44,14 @@
                                 <div class="col-sm-9">
                                     <input type="text" name="title" class="form-control" id="exampleInputUsername2" placeholder="Title" value="{{ $service->title }}" require>
                                 </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="exampleInputUsername2" class="col-sm-3 col-form-label">icon </label>
+                                <div class="col-sm-9">
+                                    <p class="card-description"> <a href="https://icofont.com/" target="_blank" class="text-info">คลิกเลือกไอคอน</a> ใส่เฉพาะชื่อคลาสของไอคอน เช่น class="icofont-pictures" คัดลอกเฉพาะ <code>icofont-pictures</code></p>
+                                    <input type="text" name="icofont" class="form-control" id="exampleInputUsername2" placeholder="class name icon" value="{{ $service->icofont}}" require>
+                                </div>
+                                
                             </div>
                             <div class="form-group row">
                                 <label for="exampleInputUsername2" class="col-sm-3 col-form-label">link</label>
@@ -60,18 +68,7 @@
                                 </div>
                             </div>
 
-                            {{-- <div class="form-group row">
-                                <label for="exampleFormControlSelect3" class="col-sm-3 col-form-label"> Published</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control form-control-sm" name="publish" id="exampleFormControlSelect3" require>
-                                        <option selected>เลือกสถานะข่าว</option>
-                                       
-                                        <option @selected( $service->publish == 1) value="1">แสดง</option>
-                                        <option @selected( $service->publish == 2) value="2">ไม่แสดง</option>
-                                        
-                                    </select>
-                                </div>
-                            </div> --}}
+                      
 
                             <div class="form-group row text-center">
                                 <div class="col-sm-12">
@@ -102,9 +99,10 @@
 <script>
     $(document).ready(function() {
         $('#summernote').summernote({
-        height: 400
+            height: 400
+        });
+
     });
-});
 </script>
 
 @endsection

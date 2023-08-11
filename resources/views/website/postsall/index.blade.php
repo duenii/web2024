@@ -64,7 +64,7 @@
         @foreach ($posts->Where('category_id', $cat_row->id) as $post)
         <div class="col-lg-2 col-md-3 mb-2">
           <div class="doctor-img-block">
-            <img src="{{ asset('/images/posts').'/'. $post->gallery->image }}" alt="" class="img-fluid img-thumbnail w-75">
+            <img src="{{ asset('/storage/images/posts/thumbnail').'/'. $post->gallery->image }}" alt="" class="img-fluid img-thumbnail w-75">
   
             {{-- <div class="info-block mt-4">
               <h4 class="mb-0">Alexandar james</h4>

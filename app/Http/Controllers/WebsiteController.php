@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Gallery;
+use App\Models\NewsLetter;
 use App\Models\Post;
 use App\Models\PostAbout;
 use App\Models\Service;
@@ -21,12 +22,14 @@ class WebsiteController extends Controller
         $banners = Banner::where('status', 1)->get();
         $navmenu = PostAbout::all();
         $submenu = SubAbout::all();
-
+        
         $services = Service::all();
+
+        $newsletter = NewsLetter::all();
 
        
         //dd( $post);
-        return view('website.index', compact('posts','cat','banners','navmenu','submenu','services'));
+        return view('website.index', compact('posts','cat','banners','navmenu','submenu','services','newsletter'));
     }
     
     public function navmenu()
