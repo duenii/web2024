@@ -9,9 +9,9 @@
           <h3 class="page-title"> User </h3>
           <nav aria-label="breadcrumb">
               
-              <ol class="breadcrumb">
-                 
-              </ol>
+              {{-- <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page"><a href="{{ url('http://127.0.0.1/register') }}" target="_blank" class="btn btn btn-gradient-success">เพิ่มข้อมูล</a></li>
+              </ol> --}}
           </nav>
       </div>
       <div class="row">
@@ -34,6 +34,7 @@
                                       <th> First name </th>
                                       <th> email </th>                         
                                       <th> role </th>
+                                      {{-- <th> action </th> --}}
                                       
                                     </tr>
                                   </thead>
@@ -46,7 +47,12 @@
                                       <td> {{ $row->name }} </td>
                                       <td> {{ $row->email }} </td>
                                       <td>  {{ $row->role_as }} </td>
-                                     
+                                      {{-- <td> 
+                                        @if ($row->role_as == "user")
+                                            <a href="{{ route('adminweb.edit', $row->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                        @endif                                           
+                       
+                                      </td> --}}
                                     </tr> 
                                     @endforeach                  
                                   </tbody>

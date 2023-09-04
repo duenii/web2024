@@ -74,6 +74,7 @@ Route::middleware('auth')->group(function () {
   
     // Route::get('/auth/services', [ServiceController::class, 'upload'])->name('services.upload');
     Route::get('/auth/adminweb', [AdminwebController::class, 'index'])->name('adminweb');
+    // Route::get('/auth/adminweb/{id}', [AdminwebController::class, 'edit'])->name('adminweb.edit');
     
 
    // Route::resource('/auth/subabouts/{id}', [SubAboutController::class, 'createsub']);

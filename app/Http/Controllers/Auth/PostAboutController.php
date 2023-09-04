@@ -112,8 +112,8 @@ class PostAboutController extends Controller
           }
    
           //updating the summernote WYSIWYG markdown output.
-          $data = $dom->saveHTML();
-          unset($dom);
+          $data = $dom->saveHTML($dom->documentElement);
+         // unset($dom);
 
             PostAbout::create([
                 'title' => $request->title,
@@ -163,9 +163,7 @@ class PostAboutController extends Controller
 
             //loading the html data from the summernote editor and select the img tags from it
             $dom = new \DOMDocument();
-            $dom->loadHtml($data, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD); 
-            $dom->loadHtml('<?xml encoding="utf-8"?>' . $data);     
-            $dom->encoding = 'utf-8';
+            $dom->loadHtml(mb_convert_encoding($data, 'HTML-ENTITIES', 'UTF-8')); 
    
             $images = $dom->getElementsByTagName('img');
            
@@ -223,7 +221,7 @@ class PostAboutController extends Controller
             }
      
             //updating the summernote WYSIWYG markdown output.
-            $data = $dom->saveHTML(); 
+            $data = $dom->saveHTML($dom->documentElement); 
   
         $postabout->update([
             'title' => $request->title,

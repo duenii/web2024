@@ -34,7 +34,6 @@ class SubAboutController extends Controller
 
 
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -44,8 +43,6 @@ class SubAboutController extends Controller
 
         return view('auth.subabouts.create',compact('postabouts'));
     }
-
-    // 
 
     /**
      * Store a newly created resource in storage.
@@ -119,8 +116,8 @@ class SubAboutController extends Controller
        }
 
        //updating the summernote WYSIWYG markdown output.
-       $data = $dom->saveHTML();
-       unset($dom);
+       $data = $dom->saveHTML($dom->documentElement);
+      // unset($dom);
       // dd($data);
 
       PostAbout::where('id',  $request->postabouts)->update(['status' => 1]);
@@ -139,7 +136,6 @@ class SubAboutController extends Controller
         return to_route('subabouts.index')->with('success', 'Create Data Update successfully');
     
     }
-
     /**
      * Display the specified resource.
      */
@@ -153,7 +149,6 @@ class SubAboutController extends Controller
         return view('website.subabouts.index',compact('subabouts','navmenu','submenu','cat'));
        
     }
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -162,7 +157,6 @@ class SubAboutController extends Controller
         $postabouts = PostAbout::all();
         return view('auth.subabouts.edit', compact('subabout','postabouts'));
     }
-
     /**
      * Update the specified resource in storage.
      */
@@ -236,8 +230,8 @@ class SubAboutController extends Controller
         }
  
         //updating the summernote WYSIWYG markdown output.
-        $data = $dom->saveHTML(); 
-        unset($dom);
+        $data = $dom->saveHTML($dom->documentElement); 
+        //unset($dom);
 
         $subabout->update([
             'postabouts_id' => $request->postabouts,
@@ -250,7 +244,6 @@ class SubAboutController extends Controller
         // dd($request->all());
         return to_route('subabouts.index')->with('warning', 'Edit Data Update successfully');
     }
-
     /**
      * Remove the specified resource from storage.
      */

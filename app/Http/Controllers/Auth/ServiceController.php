@@ -108,8 +108,8 @@ class ServiceController extends Controller
      }
 
      //updating the summernote WYSIWYG markdown output.
-     $data = $dom->saveHTML();
-     unset($dom);
+     $data = $dom->saveHTML($dom->documentElement);
+     //unset($dom);
 
             Service::create([            
               'title' => $request->title,
@@ -219,8 +219,8 @@ class ServiceController extends Controller
             }
       
             //updating the summernote WYSIWYG markdown output.
-            $data = $dom->saveHTML(); 
-            unset($dom);
+            $data = $dom->saveHTML($dom->documentElement); 
+           // unset($dom);
 
             Service::where('id',$service->id)->update(['content' => $data]);
 
