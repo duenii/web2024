@@ -25,12 +25,12 @@ class PostController extends Controller
         $search = $request['search'] ?? "";
         if ($request != "") {
             //$cat = Category::all();
-            $posts = Post::where('title', 'like', "%{$search}%")->paginate(10);
+            $posts = Post::where('title', 'like', "%{$search}%")->orderBy('updated_at', 'DESC')->paginate(10);
             //$posts = Post::with('gallery', 'category')->paginate(10);
 
         } else {
            // $cat = Category::all();
-            $posts = Post::with('gallery', 'category')->paginate(10);
+            $posts = Post::with('gallery', 'category')->orderBy('updated_at', 'DESC')->paginate(10);
         }
         //return $posts;
         $cat = Category::all();
@@ -190,7 +190,7 @@ class PostController extends Controller
     public function showall(string $id)
     {
         // dd(compact('post'));
-        $posts = Post::where('publish', 1)->get();
+        $posts = Post::where('publish', 1)->orderBy('updated_at', 'DESC')->get();
         $navmenu = PostAbout::all();
         $submenu = SubAbout::all();
         $img = Gallery::all();

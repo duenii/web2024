@@ -36,24 +36,36 @@
 
 <header>
 	<div class="header-top-bar ">
-		<div class="container-fluid bg-head">
+		<div class="container-fluid">
 			<div class="row align-items-center ">
-				<div class="col-lg-12 text-center py-5 ">
-					<img src="{{ asset('assets/website/images/web/text.png') }}" alt="" class="img-fluid w-75">
+				<div class="col-lg-12 text-center">
+					
+					<img src="{{ asset('assets/website/images/web/headweb.jpg') }}" alt="" class="img-fluid ">
 				</div>
 				
 			</div> 
 		</div>
 		<nav class="navbar navbar-expand-lg navigation bg-navmenu" id="navbar">
-			<div class="container">
+			<div class="container-fluid ">
 				
 				<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain"
 					aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="icofont-navigation-menu"></span>
 				</button>
 	
-				<div class="collapse navbar-collapse text-center" id="navbarmain">
-					<ul class="navbar-nav ml-auto mr-auto">
+				<div class="collapse navbar-collapse text-center px-5" id="navbarmain">
+					<div class="col-lg-3">
+						<ul class="navbar-nav ml-auto mr-auto">
+							<li class="nav-item font_tel">
+								TEL. 044-272937 เบอร์ภายใน 1504
+
+							</li>
+						</ul>
+						
+
+					</div>
+					<div class="col-lg-9">
+						<ul class="navbar-nav ml-auto mr-auto">
 						<li class="nav-item active">
 							<a class="nav-link" href="{{ route('home') }}">หน้าหลัก</a>
 						</li>
@@ -94,6 +106,8 @@
 						@endforeach
 
 					</ul>
+					</div>
+					
 				</div>
 			</div>
 		</nav>
@@ -109,8 +123,10 @@
 	<footer class="footer py-4 px-5">
 		<div class="container-fluid pad-cont mt-3">
 			<div class="row">
-								
-				<div class="col-lg-12 text-right text-light">
+				<div class="col-lg-3 pb-2">
+					<img src="{{ asset('assets/website/images/web/qr-code.png') }}" alt="" class="img-fluid w-25">
+				</div>	
+				<div class="col-lg-9 text-right text-light">
 					<div>มหาวิทยาลัยราชภัฏนครราชสีมา 340 ถนนสุรนารายณ์ ตำบลในเมือง อำเภอเมือง จังหวัดนครราชสีมา 30000</div>		
 					<div>เบอร์โทร 0-4400-9009 แฟกซ์ 0-4424-4739</div>
 				</div>
